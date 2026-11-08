@@ -1,0 +1,2991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TEMA 3: Renacimiento y Clasicismo | 1º Bachillerato - IES Torre del Rei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --bg-card-alt: #F4EFE6;
+      --primary: #1B3B5F;
+      --primary-light: #2B547E;
+      --burgundy: #8E242A;
+      --burgundy-dark: #681318;
+      --gold: #B6842B;
+      --gold-light: #DFC385;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --border-color: rgba(182, 132, 43, 0.34);
+      --shadow-sm: 0 2px 10px rgba(27, 59, 95, 0.05);
+      --shadow-md: 0 8px 22px rgba(27, 59, 95, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh;
+      overflow: hidden; background-color: var(--bg-main); color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      user-select: none; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      border: 8px solid #EAE0D0; z-index: 99;
+      box-shadow: inset 0 0 0 2px var(--gold);
+    }
+    .presentation-container {
+      width: 100vw; height: 100vh; position: relative; overflow: hidden;
+    }
+    .slide {
+      position: absolute; inset: 0; width: 100vw; height: 100vh;
+      padding: clamp(10px, 1.7vh, 18px) clamp(16px, 2.6vw, 36px) clamp(52px, 6.8vh, 64px) clamp(16px, 2.6vw, 36px);
+      display: flex; flex-direction: column; box-sizing: border-box;
+      opacity: 0; pointer-events: none; transform: scale(0.985);
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 90% 10%, rgba(223, 195, 133, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(142, 36, 42, 0.05) 0%, transparent 45%);
+    }
+    .slide.active {
+      opacity: 1; pointer-events: auto; transform: scale(1); z-index: 5;
+    }
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-bottom: 2px solid var(--border-color); padding-bottom: clamp(3px, 0.6vh, 6px);
+      margin-bottom: clamp(5px, 0.9vh, 10px); flex-shrink: 0;
+    }
+    .header-left { display: flex; flex-direction: column; gap: 2px; }
+    .slide-title {
+      font-family: 'Cinzel', serif; font-size: clamp(0.98rem, 1.72vw, 1.48rem);
+      color: var(--primary); font-weight: 700; line-height: 1.15;
+    }
+    .slide-number {
+      font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 0.96vw, 0.88rem);
+      font-weight: 700; color: var(--gold); white-space: nowrap;
+    }
+    .slide-body {
+      flex: 1; min-height: 0; display: flex; gap: clamp(10px, 1.5vw, 20px);
+      align-items: stretch; justify-content: stretch; overflow: hidden;
+    }
+    .pane-text {
+      flex: 1.28; min-height: 0; display: flex; flex-direction: column;
+      justify-content: space-evenly; gap: clamp(4px, 0.75vh, 8px);
+      font-size: clamp(0.72rem, 0.96vw, 0.91rem); line-height: 1.34;
+    }
+    .pane-text.full-width { flex: 1; }
+    /* IMÁGENES SIN MARCOS, DIRECTAMENTE SOBRE EL FONDO */
+    .pane-image {
+      flex: 0.82; min-height: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; position: relative;
+      background: transparent; border: none; box-shadow: none; padding: 0;
+      cursor: default; overflow: hidden;
+    }
+    .pane-image img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      background: transparent; border: none; box-shadow: none; padding: 0; border-radius: 0;
+      pointer-events: none;
+    }
+    /* IMÁGENES AMPLIABLES EN DIAPOSITIVAS SELECCIONADAS */
+    .pane-image.zoomable-image {
+      cursor: zoom-in;
+      transition: transform 0.18s ease;
+    }
+    .pane-image.zoomable-image img {
+      pointer-events: auto;
+      cursor: zoom-in;
+    }
+    .pane-image.zoomable-image:hover {
+      transform: scale(1.015);
+    }
+    .pane-image.zoomable-image::after {
+      content: "🔍 Ampliar imagen";
+      position: absolute; top: 6px; right: 8px;
+      font-size: 0.64rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; color: var(--primary); background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-color); padding: 2px 7px; border-radius: 5px;
+      opacity: 0; transition: opacity 0.18s ease; pointer-events: none;
+    }
+    .pane-image.zoomable-image:hover::after {
+      opacity: 0.96;
+    }
+    .pane-image-stack {
+      display: flex; flex-direction: column; gap: clamp(6px, 1vh, 12px);
+      min-height: 0; height: 100%; justify-content: center; align-items: center;
+      background: transparent; border: none; box-shadow: none;
+    }
+    .pane-image-stack .pane-image {
+      flex: 1; width: 100%; min-height: 0;
+    }
+    .pane-image-row {
+      display: flex; flex-direction: row; gap: clamp(6px, 1vw, 12px);
+      min-height: 0; height: 100%; justify-content: center; align-items: center;
+      background: transparent; border: none; box-shadow: none;
+    }
+    .pane-image-row .pane-image {
+      flex: 1; height: 100%; min-height: 0;
+    }
+    .pane-video {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      min-height: 0; height: 100%;
+    }
+    /* TARJETAS DE TEXTO AMPLIABLES */
+    .card {
+      background: var(--bg-card); border-radius: 9px;
+      padding: clamp(5px, 0.9vh, 10px) clamp(10px, 1.2vw, 15px);
+      border-left: 4px solid var(--gold); box-shadow: var(--shadow-sm);
+      cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .card:hover {
+      transform: translateY(-2px) scale(1.005);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+    }
+    .card::after, .activity-task::after {
+      content: "⤢ Ampliar"; position: absolute; top: 5px; right: 8px;
+      font-size: 0.62rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; color: var(--gold); background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border-color); padding: 1px 6px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; pointer-events: none;
+    }
+    .card:hover::after, .activity-task:hover::after {
+      opacity: 0.95; transform: scale(1.02);
+    }
+    .card.burgundy { border-left-color: var(--burgundy); }
+    .card.blue { border-left-color: var(--primary); }
+    .card p, .card li {
+      color: #334155; font-size: clamp(0.71rem, 0.95vw, 0.89rem); line-height: 1.33;
+      text-align: justify;
+    }
+    .card p + p { margin-top: 4px; }
+    .card p + ul, .card p + ol, .card ul + p, .card ol + p { margin-top: 4px; }
+    .card ul, .card ol { list-style: none; padding-left: 0; }
+    .card ul li, .card ol li { position: relative; padding-left: 16px; margin-bottom: 2px; }
+
+    /* DIAPOSITIVA 7: TARJETAS CON IMAGEN SECUNDARIA Y MAYOR PROTAGONISMO DEL TEXTO */
+    .card-with-img {
+      display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+      gap: clamp(14px, 1.8vw, 24px); width: 100%;
+    }
+    .card-text-major {
+      flex: 1 1 78%; min-width: 0; display: flex; flex-direction: column; justify-content: center;
+    }
+    .card-img-minor {
+      flex: 0 0 20%; max-width: 190px;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none; box-shadow: none; padding: 0;
+    }
+    .card-img-minor img {
+      height: clamp(110px, 23vh, 180px); width: auto; max-width: 100%;
+      object-fit: contain; display: block;
+      background: transparent; border: none; box-shadow: none; pointer-events: none;
+    }
+    .card-modal-content .card-with-img {
+      gap: 24px;
+    }
+    .card-modal-content .card-img-minor {
+      max-width: 210px;
+    }
+    .card-modal-content .card-img-minor img {
+      height: clamp(150px, 28vh, 230px);
+    }
+
+    /* DIAPOSITIVA 56 UNIFICADA: DIÁLOGO COMPACTO */
+    .card.compact-dialogue {
+      padding: clamp(4px, 0.7vh, 8px) clamp(8px, 1vw, 12px);
+    }
+    .card.compact-dialogue p {
+      font-size: clamp(0.64rem, 0.84vw, 0.79rem);
+      line-height: 1.22;
+      margin-top: 2px;
+    }
+    .card.compact-dialogue-intro {
+      padding: clamp(4px, 0.65vh, 7px) clamp(10px, 1.1vw, 14px);
+    }
+    .card.compact-dialogue-intro p {
+      font-size: clamp(0.68rem, 0.88vw, 0.83rem);
+      line-height: 1.24;
+      margin-top: 2px;
+    }
+
+    /* JERARQUÍA EXACTA DE VIÑETAS DEL DOCUMENTO ORIGINAL */
+    .card ul.bu-diamond > li::before,
+    .card-modal-content ul.bu-diamond > li::before {
+      content: "❖"; position: absolute; left: 0; color: var(--burgundy);
+      font-weight: bold; font-size: 0.78rem; line-height: 1.38;
+    }
+    .card ul.bu-square,
+    .card-modal-content ul.bu-square {
+      margin-top: 2px; margin-bottom: 2px;
+    }
+    .card ul.bu-square > li,
+    .card-modal-content ul.bu-square > li {
+      padding-left: 22px;
+    }
+    .card ul.bu-square > li::before,
+    .card-modal-content ul.bu-square > li::before {
+      content: "▪"; position: absolute; left: 7px; color: var(--gold);
+      font-weight: bold; font-size: 0.85rem; line-height: 1.25;
+    }
+    .card ul.bu-dot > li::before,
+    .card-modal-content ul.bu-dot > li::before {
+      content: "•"; position: absolute; left: 0; color: var(--gold);
+      font-weight: bold; font-size: 1.05rem; line-height: 1;
+    }
+    .card ul.bu-sub-dot,
+    .card-modal-content ul.bu-sub-dot {
+      margin-top: 2px; margin-bottom: 2px;
+    }
+    .card ul.bu-sub-dot > li,
+    .card-modal-content ul.bu-sub-dot > li {
+      padding-left: 22px;
+    }
+    .card ul.bu-sub-dot > li::before,
+    .card-modal-content ul.bu-sub-dot > li::before {
+      content: "•"; position: absolute; left: 7px; color: var(--gold);
+      font-weight: bold; font-size: 1rem; line-height: 1;
+    }
+    .card ol.bu-alpha,
+    .card-modal-content ol.bu-alpha {
+      counter-reset: alpha-counter;
+    }
+    .card ol.bu-alpha > li,
+    .card-modal-content ol.bu-alpha > li {
+      padding-left: 22px; counter-increment: alpha-counter;
+    }
+    .card ol.bu-alpha > li::before,
+    .card-modal-content ol.bu-alpha > li::before {
+      content: counter(alpha-counter, lower-alpha) ")";
+      position: absolute; left: 0; color: var(--burgundy); font-weight: 700;
+    }
+    .card ul.bu-hand > li, .activity-task ul.bu-hand > li, .card-modal-content ul.bu-hand > li {
+      padding-left: 28px; position: relative; margin-bottom: 8px;
+      font-size: clamp(0.95rem, 1.35vw, 1.22rem);
+    }
+    .card ul.bu-hand > li::before, .activity-task ul.bu-hand > li::before, .card-modal-content ul.bu-hand > li::before {
+      content: "☞"; position: absolute; left: 0; color: var(--burgundy);
+      font-weight: bold; font-size: 1.2rem; line-height: 1.1;
+    }
+    .sub-indent {
+      padding-left: 20px; color: #334155; font-size: clamp(0.7rem, 0.92vw, 0.86rem);
+      line-height: 1.3; margin-top: 1px;
+    }
+    .alpha-plain {
+      padding-left: 16px; text-indent: -16px; margin-top: 3px;
+    }
+    .card strong, .activity-task strong, .comp-table strong { color: #0F172A; font-weight: 700; }
+    .card u, .activity-task u, .card-modal-content u {
+      text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 2px;
+    }
+
+    .grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.1vw, 14px);
+      width: 100%; height: 100%; min-height: 0; align-content: stretch;
+    }
+    .grid-3 {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(8px, 1vw, 14px);
+      width: 100%; height: 100%; min-height: 0; align-content: stretch;
+    }
+
+    /* TABLA COMPARATIVA */
+    .comp-table-wrap {
+      width: 100%; height: 100%; min-height: 0; display: flex; flex-direction: column;
+      background: #FFFFFF; border-radius: 10px; border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm); overflow: hidden; cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+    }
+    .comp-table-wrap:hover {
+      transform: translateY(-2px) scale(1.003);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .comp-table-wrap::after {
+      content: "⤢ Ampliar tabla"; position: absolute; top: 5px; right: 8px;
+      font-size: 0.64rem; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; color: var(--primary); background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-color); padding: 1px 6px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.18s ease; pointer-events: none; z-index: 5;
+    }
+    .comp-table-wrap:hover::after { opacity: 0.95; }
+    .comp-table {
+      width: 100%; height: 100%; border-collapse: collapse; font-size: clamp(0.64rem, 0.86vw, 0.81rem);
+    }
+    .comp-table th {
+      background: var(--primary); color: #FFFFFF; font-family: 'Cinzel', serif;
+      padding: clamp(4px, 0.6vh, 7px) clamp(8px, 1vw, 14px); text-align: center;
+      font-size: clamp(0.72rem, 0.98vw, 0.9rem); letter-spacing: 0.8px;
+    }
+    .comp-table th strong { color: #FFFFFF !important; }
+    .comp-table th:nth-child(2) { background: var(--burgundy); }
+    .comp-table td {
+      padding: clamp(3px, 0.45vh, 5px) clamp(8px, 0.9vw, 12px); border-bottom: 1px solid #E2E8F0;
+      border-right: 1px solid #F1F5F9;
+      line-height: 1.24; vertical-align: middle; color: #334155; text-align: justify;
+    }
+    .comp-table tr:nth-child(even) td { background-color: #FAF8F5; }
+    .comp-table tr:hover td { background-color: #FEF3C7; }
+
+    /* PORTADA */
+    .cover-layout {
+      display: flex; height: 100%; align-items: center; justify-content: space-between;
+      gap: clamp(20px, 3vw, 48px);
+    }
+    .cover-info { flex: 1.05; display: flex; flex-direction: column; justify-content: center; }
+    .cover-eyebrow {
+      font-family: 'Cinzel', serif; font-size: clamp(0.78rem, 1.05vw, 0.95rem);
+      color: var(--burgundy); font-weight: 700; letter-spacing: 2.5px; margin-bottom: 10px;
+    }
+    .cover-title {
+      font-family: 'Cinzel', serif; font-size: clamp(1.85rem, 3.6vw, 3.1rem);
+      color: var(--primary); font-weight: 900; line-height: 1.12; margin-bottom: 18px;
+    }
+    .cover-meta {
+      padding-top: 16px; border-top: 2px solid var(--border-color);
+      font-size: clamp(0.9rem, 1.2vw, 1.12rem); color: #334155; font-weight: 600;
+      display: flex; flex-direction: column; gap: 6px; font-family: 'Cinzel', serif;
+    }
+    .cover-img-pane {
+      flex: 1.05; height: 86%; display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none; box-shadow: none; padding: 0;
+    }
+    .cover-img-pane img {
+      max-height: 100%; max-width: 100%; object-fit: contain;
+      background: transparent; border: none; box-shadow: none; padding: 0; border-radius: 0;
+      pointer-events: none;
+    }
+
+    /* CONTENIDOS EN UNA SOLA TARJETA PROTAGONISTA */
+    .contents-single-card {
+      padding: clamp(14px, 2.2vh, 26px) clamp(18px, 2.2vw, 32px);
+      border-left: 6px solid var(--burgundy);
+    }
+    .contents-single-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.2vw, 34px); width: 100%; height: 100%;
+      align-items: center;
+    }
+    .contents-block-col {
+      display: flex; flex-direction: column; justify-content: space-evenly;
+      gap: clamp(10px, 1.6vh, 18px); height: 100%;
+    }
+    .contents-section {
+      display: flex; flex-direction: column; gap: clamp(4px, 0.7vh, 8px);
+    }
+    .c-head {
+      font-family: 'Cinzel', serif; font-size: clamp(0.92rem, 1.22vw, 1.14rem);
+      font-weight: 700; color: var(--primary); padding: 6px 12px; border-radius: 6px;
+      cursor: pointer; transition: all 0.15s ease; display: inline-block;
+      border-left: 4px solid var(--burgundy); background: #FDF8F6;
+    }
+    .c-head:hover { background: #FEE2E2; color: var(--burgundy-dark); transform: translateX(3px); }
+    .c-lvl1 {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding-left: clamp(12px, 1.3vw, 18px);
+      font-size: clamp(0.84rem, 1.08vw, 1.02rem); font-weight: 500;
+      color: #1E293B; cursor: pointer; border-radius: 6px; padding-top: 3px; padding-bottom: 3px;
+      transition: all 0.15s ease; line-height: 1.35;
+    }
+    .c-lvl1::before {
+      content: "•"; color: var(--burgundy); font-weight: bold;
+      font-size: 1.15rem; line-height: 1; flex-shrink: 0;
+    }
+    .c-lvl1:hover { background: #FEF3C7; color: var(--burgundy-dark); transform: translateX(3px); }
+    .card-modal-content .contents-single-grid {
+      grid-template-columns: 1fr; gap: 18px;
+    }
+
+    /* VÍDEOS */
+    .video-frame {
+      width: 100%; height: 100%; max-height: 100%; display: flex;
+      align-items: center; justify-content: center; background: #000;
+      border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);
+    }
+    .video-frame video {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+
+    /* ACTIVIDADES */
+    .activity-container {
+      display: flex; width: 100%; height: 100%; min-height: 0; gap: clamp(18px, 2.5vw, 36px);
+      align-items: center; justify-content: center; padding: 0 clamp(10px, 2vw, 30px);
+    }
+    .activity-img-box {
+      flex: 0.75; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: transparent; border: none; box-shadow: none; cursor: default;
+    }
+    .activity-img-box img {
+      max-height: 72%; max-width: 85%; object-fit: contain;
+      background: transparent; border: none; box-shadow: none; pointer-events: none;
+    }
+    .activity-info-box {
+      flex: 1.15; display: flex; flex-direction: column; justify-content: center;
+      gap: clamp(10px, 1.8vh, 18px);
+    }
+    .activity-task {
+      background: #FFFFFF; border-radius: 12px; padding: clamp(18px, 2.8vh, 30px) clamp(20px, 2.4vw, 32px);
+      border-left: 6px solid var(--burgundy); box-shadow: var(--shadow-sm);
+      cursor: pointer; position: relative;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s ease;
+    }
+    .activity-task:hover {
+      transform: translateY(-2px) scale(1.006);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* TARJETAS DE PREGUNTAS */
+    .card.q-card {
+      border-radius: 10px;
+      border-left-width: 5px;
+      padding: clamp(6px, 1vh, 12px) clamp(12px, 1.4vw, 18px);
+    }
+    .card.q-card.tone-blue {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border: 1px solid #BFDBFE; border-left: 5px solid #1E3A5F;
+    }
+    .card.q-card.tone-amber {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border: 1px solid #FDE68A; border-left: 5px solid #B48327;
+    }
+    .card.q-card.tone-emerald {
+      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+      border: 1px solid #A7F3D0; border-left: 5px solid #166534;
+    }
+    .card.q-card.tone-purple {
+      background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+      border: 1px solid #DDD6FE; border-left: 5px solid #5B21B6;
+    }
+    .card.q-card.tone-rose {
+      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
+      border: 1px solid #FECDD3; border-left: 5px solid #9F1239;
+    }
+    .card.q-card.tone-teal {
+      background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+      border: 1px solid #99F6E4; border-left: 5px solid #115E59;
+    }
+
+    /* BARRA INFERIOR DE NAVEGACIÓN */
+    .bottom-bar {
+      position: fixed; bottom: 8px; left: 8px; right: 8px; height: 44px;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border-color); display: flex;
+      align-items: center; justify-content: space-between; padding: 0 clamp(12px, 2vw, 24px);
+      z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .progress-track {
+      position: absolute; top: 0; left: 0; height: 3px; background: #E2E8F0; width: 100%;
+    }
+    .progress-bar {
+      height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--burgundy) 50%, var(--primary) 100%);
+      width: 0%; transition: width 0.25s ease;
+    }
+    .nav-controls { display: flex; align-items: center; gap: 8px; }
+    .nav-btn {
+      background: #F1F5F9; border: 1px solid #CBD5E1; color: #334155;
+      width: 34px; height: 34px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; cursor: pointer;
+      font-weight: bold; font-size: 1.1rem; transition: all 0.15s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--primary); color: white; border-color: var(--primary);
+      transform: scale(1.08);
+    }
+    .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .indicator {
+      font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 0.98vw, 0.88rem);
+      font-weight: 700; color: #475569; min-width: 110px; text-align: center;
+    }
+    .aux-controls { display: flex; align-items: center; gap: 8px; }
+    .aux-btn {
+      background: #FFFFFF; border: 1px solid #CBD5E1; color: #475569;
+      padding: 5px 11px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.15s ease;
+    }
+    .aux-btn:hover { background: #F8FAFC; color: var(--primary); border-color: var(--primary); }
+
+    /* DRAWER DE ÍNDICE DE DIAPOSITIVAS */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(5px); z-index: 200; display: none;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .index-drawer {
+      background: #FFFFFF; width: 92%; max-width: 1020px; max-height: 86vh;
+      border-radius: 12px; border: 2px solid var(--gold); display: flex;
+      flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .drawer-header {
+      padding: 14px 20px; background: var(--primary); color: white;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .drawer-header h3 { font-family: 'Cinzel', serif; margin: 0; font-size: 1.15rem; }
+    .drawer-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .drawer-body {
+      padding: 16px 20px; overflow-y: auto; display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px;
+    }
+    .drawer-item {
+      padding: 7px 10px; border-radius: 6px; border: 1px solid #E2E8F0;
+      font-size: 0.78rem; color: #1E293B; cursor: pointer; display: flex;
+      align-items: center; gap: 8px; transition: background 0.15s ease;
+    }
+    .drawer-item:hover { background: #FEF3C7; border-color: var(--gold); }
+    .drawer-item.current { background: #DBEAFE; border-color: var(--primary); font-weight: bold; }
+    .drawer-item .item-num {
+      font-family: 'Cinzel', serif; font-weight: 700; color: var(--burgundy); min-width: 24px;
+    }
+
+    /* MODAL PARA AMPLIAR TARJETAS DE TEXTO */
+    .card-modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(6px); z-index: 350; display: none;
+      align-items: center; justify-content: center; padding: clamp(16px, 3vw, 40px);
+      cursor: zoom-out;
+    }
+    .card-modal-overlay.active { display: flex; }
+    .card-modal-container {
+      background: #FFFFFF; border-radius: 16px;
+      max-width: 900px; width: 92%; max-height: 86vh;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      border: 2px solid var(--gold); border-left-width: 10px;
+      display: flex; flex-direction: column; position: relative;
+      overflow: hidden; cursor: default;
+      animation: popCardModal 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes popCardModal {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .card-modal-container.burgundy { border-left-color: var(--burgundy); }
+    .card-modal-container.blue { border-left-color: var(--primary); }
+    .card-modal-container.gold { border-left-color: var(--gold); }
+    .card-modal-container.tone-blue { border-left-color: #1E3A5F; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%); }
+    .card-modal-container.tone-amber { border-left-color: #B48327; background: linear-gradient(135deg, #FFFDF7 0%, #FEF3C7 100%); }
+    .card-modal-container.tone-emerald { border-left-color: #166534; background: linear-gradient(135deg, #F6FEF9 0%, #DCFCE7 100%); }
+    .card-modal-container.tone-purple { border-left-color: #5B21B6; background: linear-gradient(135deg, #FAF8FF 0%, #EDE9FE 100%); }
+    .card-modal-container.tone-rose { border-left-color: #9F1239; background: linear-gradient(135deg, #FFF8F9 0%, #FFE4E6 100%); }
+    .card-modal-container.tone-teal { border-left-color: #115E59; background: linear-gradient(135deg, #F4FFFD 0%, #CCFBF1 100%); }
+    .card-modal-close {
+      position: absolute; top: 12px; right: 14px; width: 36px; height: 36px;
+      border-radius: 50%; background: #F1F5F9; border: 1px solid #CBD5E1;
+      color: #334155; font-size: 1.3rem; font-weight: bold; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s ease; z-index: 10; line-height: 1;
+    }
+    .card-modal-close:hover {
+      background: var(--burgundy); color: white; border-color: var(--burgundy);
+      transform: scale(1.08);
+    }
+    .card-modal-content {
+      padding: clamp(22px, 3.5vh, 38px) clamp(22px, 3vw, 42px);
+      overflow-y: auto; font-size: clamp(1rem, 1.32vw, 1.24rem);
+      line-height: 1.62; color: #1E293B;
+    }
+    .card-modal-content p, .card-modal-content li {
+      font-size: clamp(0.98rem, 1.28vw, 1.2rem); line-height: 1.62; margin-bottom: 10px;
+      color: #334155; text-align: justify;
+    }
+    .card-modal-content ul, .card-modal-content ol {
+      list-style: none; padding-left: 0; margin-top: 8px; margin-bottom: 12px;
+    }
+    .card-modal-content ul li, .card-modal-content ol li {
+      position: relative; padding-left: 26px; margin-bottom: 8px;
+    }
+    .card-modal-content .sub-indent {
+      padding-left: 26px; font-size: clamp(0.95rem, 1.2vw, 1.14rem); margin-bottom: 6px;
+    }
+    .card-modal-content .comp-table {
+      font-size: clamp(0.84rem, 1.05vw, 1rem);
+    }
+    .card-modal-content .comp-table th, .card-modal-content .comp-table td {
+      padding: 8px 12px;
+    }
+    .card-modal-content .comp-table-wrap::after,
+    .card-modal-content .card::after,
+    .card-modal-content .activity-task::after { display: none !important; }
+    .card-modal-footer {
+      padding: 8px 20px; background: #F8FAFC; border-top: 1px solid #E2E8F0;
+      text-align: center; font-size: 0.8rem; color: #64748B; font-family: 'Cinzel', serif;
+    }
+
+    /* MODAL PARA AMPLIAR IMÁGENES EN LAS DIAPOSITIVAS HABILITADAS */
+    .img-modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.84);
+      backdrop-filter: blur(7px); z-index: 400; display: none;
+      align-items: center; justify-content: center; padding: clamp(16px, 3vw, 36px);
+      cursor: zoom-out;
+    }
+    .img-modal-overlay.active { display: flex; }
+    .img-modal-wrapper {
+      position: relative; max-width: 94vw; max-height: 90vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      animation: popCardModal 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .img-modal-wrapper img {
+      max-width: 94vw; max-height: 86vh; object-fit: contain;
+      background: transparent; border: none; box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+      border-radius: 6px; cursor: default;
+    }
+    .img-modal-close {
+      position: fixed; top: 18px; right: 24px; width: 42px; height: 42px;
+      border-radius: 50%; background: rgba(255,255,255,0.92); border: 2px solid var(--gold);
+      color: var(--primary); font-size: 1.5rem; font-weight: bold; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s ease; z-index: 410; line-height: 1;
+    }
+    .img-modal-close:hover {
+      background: var(--burgundy); color: white; border-color: var(--burgundy);
+      transform: scale(1.08);
+    }
+
+    /* OPTIMIZACIÓN MULTI-DISPOSITIVO */
+    @media (max-width: 900px) {
+      .slide {
+        overflow-y: auto;
+        padding-bottom: 64px;
+      }
+      .slide-body {
+        flex-direction: column;
+        overflow-y: visible;
+        height: auto;
+      }
+      .pane-text { flex: none; width: 100%; }
+      .pane-image, .pane-image-stack, .pane-image-row, .pane-video {
+        flex: none; width: 100%; max-height: 38vh;
+      }
+      .grid-2, .grid-3, .contents-single-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .card-with-img { flex-direction: column; }
+      .card-img-minor { max-width: 55%; max-height: 22vh; }
+      .cover-layout { flex-direction: column-reverse; text-align: center; justify-content: center; }
+      .cover-img-pane { height: 38%; width: 100%; }
+      .activity-container { flex-direction: column; }
+      .activity-img-box { height: 28vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation-container" id="presentationContainer">
+
+    <!-- SLIDE 1: Portada -->
+    <section class="slide active" data-index="1" data-title="Portada: Literatura Renacimiento y Clasicismo">
+      <div class="cover-layout">
+        <div class="cover-info">
+          <div class="cover-eyebrow">LITERATURA UNIVERSAL • TEMA 3</div>
+          <h1 class="cover-title"><strong>LITERATURA RENACIMIENTO Y CLASICISMO</strong></h1>
+          <div class="cover-meta">
+            <span>1ºBACHILLERATO</span>
+            <span>IES TORRE DEL REI</span>
+            <span>PROF. NURIA RIBÉS</span>
+          </div>
+        </div>
+        <div class="cover-img-pane">
+          <img src="presentacion_recursos/image7.png" alt="La historia de Nastagio degli Onesti - Sandro Botticelli">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: CONTENIDOS -->
+    <section class="slide" data-index="2" data-title="Contenidos">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title">CONTENIDOS</h2>
+        </div>
+        <span class="slide-number">02 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 2.15;">
+          <div class="card gold contents-single-card" style="height: 100%; justify-content: space-evenly;">
+            <div class="contents-single-grid">
+              <div class="contents-block-col">
+                <div class="contents-section">
+                  <div class="c-head" onclick="goToSlide(4)"><strong>3.1 Contexto histórico</strong></div>
+                </div>
+                <div class="contents-section">
+                  <div class="c-head" onclick="goToSlide(10)"><strong>3.2 Renacimiento. Características</strong></div>
+                </div>
+                <div class="contents-section">
+                  <div class="c-head" onclick="goToSlide(14)"><strong>3.3 El Renacimiento en Italia. </strong></div>
+                  <div class="c-lvl1" onclick="goToSlide(14)"><span>Los padres de la literatura italiana: Dante, Petrarca, Bocaccio</span></div>
+                  <div class="c-lvl1" onclick="goToSlide(28)"><span>Prosa de ideas: Maquiavelo</span></div>
+                  <div class="c-lvl1" onclick="goToSlide(29)"><span>La <em>Commedia dell’Arte</em></span></div>
+                </div>
+              </div>
+              <div class="contents-block-col">
+                <div class="contents-section">
+                  <div class="c-head" onclick="goToSlide(30)"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></div>
+                  <div class="c-lvl1" onclick="goToSlide(30)"><span>El ensayo: Montaigne</span></div>
+                  <div class="c-lvl1" onclick="goToSlide(33)"><span>El teatro francés</span></div>
+                  <div class="c-lvl1" onclick="goToSlide(35)"><span>Molière, el gran comediógrafo francés</span></div>
+                </div>
+                <div class="contents-section">
+                  <div class="c-head" onclick="goToSlide(44)"><strong>3.5 La edad de oro de la literatura inglesa</strong></div>
+                  <div class="c-lvl1" onclick="goToSlide(44)"><span>El teatro isabelino. Thomas Kyd, Christopher Marlowe, Benjamin Jonson</span></div>
+                  <div class="c-lvl1" onclick="goToSlide(49)"><span>Shakespeare</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pane-image" style="flex: 0.68; max-height: 62vh; align-self: center;">
+          <img src="presentacion_recursos/image8.png" alt="Planisphaerium Copernicanum">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Edad Media vs Renacimiento y Clasicismo -->
+    <section class="slide" data-index="3" data-title="Edad Media ➔ Renacimiento y Clasicismo">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>EDAD MEDIA ➔ RENACIMIENTO Y CLASICISMO</strong></h2>
+        </div>
+        <span class="slide-number">03 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="comp-table-wrap">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th style="width: 50%;"><strong>EDAD MEDIA</strong></th>
+                <th style="width: 50%;"><strong>RENACIMIENTO Y CLASICISMO</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Predominio del <strong>espíritu religioso</strong> como principio informador de la vida: <strong>devociones, leyendas piadosas.</strong></td>
+                <td>Predominio del <strong>espíritu humanista</strong> dentro de un ambiente cortesano, con algunos toques de paganismo.</td>
+              </tr>
+              <tr>
+                <td>Poderoso <strong>arraigo de lo popular</strong>; la literatura responde a las <strong>tradiciones y necesidades identitarias del pueblo</strong>.</td>
+                <td>Importancia de los <strong>clásicos</strong>; la literatura responde a las <strong>aspiraciones culturales y sociales de la burguesía</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Influencias extranjeras</strong>, sobre todo <strong>árabes</strong> y <strong>orientales</strong>, que dan un sabor especial a las obras.</td>
+                <td><strong>Influencia de Grecia y Roma</strong>, que imprime un tono clásico a las obras.</td>
+              </tr>
+              <tr>
+                <td>Concepción de la <strong>belleza como un bien caduco</strong> que nos recuerda que <strong>lo único eterno es Dios</strong>.</td>
+                <td>Búsqueda de la <strong>belleza absoluta</strong> en este mundo como reflejo de la <strong>belleza eterna representada por Dios</strong>.</td>
+              </tr>
+              <tr>
+                <td>La <strong>Naturaleza</strong> se considera <strong>creación de Dios</strong> y <strong>se desconfía de la mujer</strong> como inductora del pecado.</td>
+                <td>Nueva consideración de la <strong>Naturaleza</strong> y de la mujer, <strong>espejo de todas las perfecciones</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Presencia de la muerte</strong>: el <strong>mundo</strong> se suele contemplar como un <strong>valle de lágrimas</strong>, un <strong>lugar de tránsito</strong> hacia la bienaventuranza eterna o el castigo eterno.</td>
+                <td><strong>Sentido epicúreo de la vida</strong>: el temor medieval a la muerte se supera apostando por la <strong>trascendencia dentro de este mundo o por el goce materialista</strong>.</td>
+              </tr>
+              <tr>
+                <td>El <strong>latín</strong> sigue teniendo un enorme <strong>peso en todos los ámbitos de la cultura</strong>, también en el <strong>literario</strong>.</td>
+                <td>La <strong>lengua vulgar se convierte en lengua literaria</strong> en las distintas naciones, aunque siga apreciándose el latín.</td>
+              </tr>
+              <tr>
+                <td>Los géneros literarios son muy limitados; predomina la <strong>épica</strong> y la <strong>lírica amorosa o religiosa.</strong></td>
+                <td>Aparición de nuevos géneros, en particular la <strong>novela</strong>; se desarrolla la <strong>prosa de ideas</strong> y el <strong>teatro</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Idea didáctica de la literatura</strong>, pensada para la <strong>edificación del ser humano</strong>.</td>
+                <td>La <strong>idea didáctica de la literatura</strong> se combina con la <strong>voluntad de deleitar al lector</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Cronología General -->
+    <section class="slide" data-index="4" data-title="Cronología: Trecento, Renacimiento y Barroco">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>CRONOLOGÍA: TRECENTO, RENACIMIENTO Y BARROCO</strong></h2>
+        </div>
+        <span class="slide-number">04 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image zoomable-image" style="flex: 1;">
+          <img src="presentacion_recursos/image10.jpg" alt="Cronología Renacimiento y Clasicismo">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 3.1 contexto histórico - Cronología -->
+    <section class="slide" data-index="5" data-title="3.1 Contexto histórico: Cronología">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">05 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card blue">
+<p><strong>CRONOLOGÍA</strong></p>
+<ul class="bu-dot">
+  <li><strong>El Humanismo y el "Primer Renacimiento" (</strong><strong><em>Trecento</em></strong><strong> y </strong><strong><em>Quattrocento</em></strong><strong> Italiano)</strong>
+    <div class="sub-indent"><u>Cronología</u>: Siglos XIV - XV</div>
+    <div class="sub-indent"><u>Foco</u>: Italia (Florencia, Roma)</div>
+  </li>
+  <li><strong>El Alto Renacimiento (</strong><strong><em>Cinquecento</em></strong><strong> y expansión europea)</strong>
+    <div class="sub-indent"><u>Cronología</u>: Siglo XVI (aprox. 1492 - 1560)</div>
+    <div class="sub-indent"><u>Foco</u>: España, Francia, Inglaterra</div>
+  </li>
+  <li><strong>Transición: Del Renacimiento al Barroco</strong>
+    <div class="sub-indent"><u>Cronología</u>: Finales del s. XVI - Inicios del s. XVII</div>
+    <div class="sub-indent"><u>Foco</u>: Europa Occidental.</div>
+  </li>
+  <li><strong>El Clasicismo (o Clasicismo Francés)</strong>
+    <div class="sub-indent"><u>Cronología</u>: Siglo XVII (El "Grand Siècle")</div>
+    <div class="sub-indent"><u>Foco</u>: Francia.</div>
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image-stack" style="flex: 0.85;">
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image12.png" alt="Europa en el siglo XVI"></div>
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image11.jpeg" alt="Mapa de Europa"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: 3.1 contexto histórico - Italia -->
+    <section class="slide" data-index="6" data-title="3.1 Contexto histórico: Italia">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">06 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.32;">
+          <div class="card burgundy">
+<p><strong>ITALIA Y EL NACIMIENTO DE UNA NUEVA ÉPOCA</strong></p>
+<ul class="bu-diamond">
+  <li>Siglo X ➔ Italia ➔ Sacro Imperio Romano Germánico.
+  </li>
+  <li>Siglo XIV ➔ debilitamiento del poder imperial ➔ aparición de ciudades-estado.
+    <ul class="bu-square">
+      <li>Florencia, gobernada por los Médici;</li>
+      <li>Milán, por los Sforza;</li>
+      <li>Venecia, controlada por una oligarquía que elegía entre sus miembros a un jefe de gobierno, el dogo;</li>
+      <li>Roma, bajo el mando de los papas;</li>
+      <li>y Nápoles, cuya posesión se disputaban franceses y españoles.</li>
+    </ul>
+  </li>
+  <li>Enriquecimiento:
+    <ul class="bu-sub-dot">
+      <li>las rutas comerciales de Oriente pasaban por Italia.</li>
+      <li>la industria y la banca se desarrollaron y crearon una poderosa burguesía.</li>
+    </ul>
+  </li>
+</ul>
+</div>
+          <div class="card gold">
+<p>Estos factores propiciaron el florecimiento de las artes y de la cultura en general, que culminaría en la eclosión del Renacimiento con figuras como Botticelli (1444-1510), Leonardo da Vinci (1452-1519), Miguel Ángel (1475-1564), Tiziano (1487-1576) o Rafael (1483-1520).</p>
+</div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.78;">
+          <img src="presentacion_recursos/image13.png" alt="Península Italiana en 1499">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: 3.1 contexto histórico - Francia -->
+    <section class="slide" data-index="7" data-title="3.1 Contexto histórico: Francia (s. XVI-XVII)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">07 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text full-width">
+          <div class="card burgundy">
+<div class="card-with-img">
+  <div class="card-text-major">
+    <p><strong>LA FRANCIA DE LOS SIGLOS XVI-XVII</strong></p>
+<ul class="bu-diamond">
+  <li>Durante el <strong>siglo XVI</strong>, el trono francés fue ocupado por la <u>dinastía de Orleans</u>.
+    <ul class="bu-sub-dot">
+      <li>La <u>primera mitad del siglo </u>estuvo marcada por las guerras contra el imperio de Carlos V, al cual le disputaba Francia la posesión de Italia, hasta que, en 1559, reinando ya en España Felipe II, Francia hubo de renunciar a sus pretensiones en la Paz de <em>Cateau-Cambrésis</em> (1559).</li>
+      <li>La <u>segunda mitad del siglo </u>estuvo marcada por las guerras de religión. Habiéndose propagado por Francia la doctrina de Calvino, los enfrentamientos entre católicos y protestantes (hugonotes) fueron continuos y cruentos, hasta la proclamación en 1598 de la libertad religiosa.</li>
+    </ul>
+  </li>
+</ul>
+  </div>
+  <div class="card-img-minor">
+    <img src="presentacion_recursos/francia_s16_orleans.jpg" alt="Francisco I de Francia - Siglo XVI">
+  </div>
+</div>
+</div>
+          <div class="card gold">
+<div class="card-with-img">
+  <div class="card-text-major">
+    <ul class="bu-diamond">
+  <li>En el <strong>siglo XVII </strong>reina en Francia la <u>dinastía borbónica</u>, con los reinados de Enrique IV (1533-1610), Luis XIII (1601-1643) y <strong>Luis XIV</strong>, el Rey Sol (1638-1715).
+    <ul class="bu-sub-dot">
+      <li><u>Luis XIII</u> delegó el gobierno en el cardenal Richelieu (1582-1642), quien aplicó una política centralizadora y represiva y se propuso la hegemonía de Francia.</li>
+      <li><u>Luis XIV</u>, apoyado al principio de su reinado en el cardenal Mazarino (1602-1661), afianzó el régimen absolutista y eliminó la libertad religiosa de los hugonotes, lo que ocasionó un fractura social y económica, e, impulsado por una gran sed de gloria militar, mantuvo múltiples guerras con otras potencias europeas.</li>
+    </ul>
+  </li>
+</ul>
+  </div>
+  <div class="card-img-minor">
+    <img src="presentacion_recursos/francia_s17_luis_xiv.jpg" alt="Luis XIV, el Rey Sol - Siglo XVII">
+  </div>
+</div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: 3.1 contexto histórico - La Inglaterra Isabelina -->
+    <section class="slide" data-index="8" data-title="3.1 Contexto histórico: La Inglaterra Isabelina">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.1 contexto histórico</strong></h2>
+        </div>
+        <span class="slide-number">08 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card burgundy">
+<p><strong>LA INGLATERRA ISABELINA</strong></p>
+<p>El reinado de <strong>Isabel I (1533-1603)</strong> abarcó casi medio siglo de la historia de Inglaterra, <u>entre 1558 y 1603</u>. Con su ascenso al poder, Inglaterra entró en una larga <u>fase de prosperidad y relativa calma</u>, lo que la situó entre las grandes potencias europeas. Durante su reinado se consolidó la hegemonía marítima inglesa.</p>
+</div>
+          <div class="card blue">
+<p>De su política interna sobresale la <u>defensa a ultranza de la Iglesia anglicana</u> (variante inglesa del protestantismo), así como el <u>autoritarismo</u> con que rigió el país, no sin antes haberse ganado hábilmente la confianza y el apoyo del Parlamento.</p>
+</div>
+          <div class="card gold">
+<p>Muerta la reina sin descendencia, desapareció con ella la dinastía Tudor, que fue reemplazada por la <u>casa de los Estuardo</u>, a la que pertenecía el nuevo soberano, Jacobo I (1566-1625).</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image14.png" alt="Isabel I de Inglaterra">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: ACTIVIDADES -->
+    <section class="slide" data-index="9" data-title="Actividades (Pág. 120)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">09 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 120, nº 1 (a, b, c, d, e)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Pág. 120, nº 1 -->
+    <section class="slide" data-index="10" data-title="Pág. 120, nº 1 (a, b, c, d, e)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 120, nº 1 (a, b, c, d, e)</strong></h2>
+        </div>
+        <span class="slide-number">10 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.3;">
+          <div class="card q-card tone-blue"><p><strong>a. ¿Qué condiciones debieron darse, según Burckhardt, para que se iniciase el Renacimiento? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Por qué se recurre a la Antigüedad clásica? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. El historiador explica el paso de la Edad Media al Renacimiento por medio de una metáfora. ¿Qué dice exactamente? Explícalo. </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. Este hecho tuvo como consecuencia directa la búsqueda del mérito y la excelencia. ¿En qué aspectos de la vida cotidiana se hacía patente? </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. El descubrimiento del individuo se pone en relación con el sentido moderno de la gloria. ¿Por qué? Comenta este cambio de mentalidad.</strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.8;">
+          <img src="presentacion_recursos/image16.png" alt="Texto Pág. 120">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: 3.2 Renacimiento. Características (I) -->
+    <section class="slide" data-index="11" data-title="3.2 Renacimiento. Características (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.2 Renacimiento. Características.</strong></h2>
+        </div>
+        <span class="slide-number">11 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 8px;">
+        <div class="card burgundy" style="flex-shrink:0;">
+<ul class="bu-diamond">
+  <li>El Renacimiento supuso, sobre todo, <strong>una manera nueva de concebir el mundo</strong>.
+  </li>
+  <li>Fue una etapa de <strong>cambios profundos</strong> en numerosos ámbitos de la vida humana: política, economía, religión, cultura, arte, ciencia, etc.
+  </li>
+  <li>Todas estas transformaciones fueron paralelas al desarrollo del <strong>Humanismo</strong>, que reforzó el cambio de mentalidad al situar al individuo en una posición de dignidad y en un mundo que pretendía conocer y disfrutar.
+  </li>
+</ul>
+</div>
+        <div class="card blue" style="flex-shrink:0; padding-top:4px; padding-bottom:4px;">
+<p><strong>CARACTERÍSTICAS</strong></p>
+</div>
+        <div class="grid-3" style="flex: 1;">
+          <div class="card gold">
+<ol class="bu-alpha">
+  <li>En lo <strong>político</strong>, <u>se debilita el sistema feudal</u>, característico de la Edad Media, por el cual los nobles ejercían en sus demarcaciones un poder extraordinario sobre sus vasallos, la mayoría campesinos, a quienes cobraban en especie y en trabajo el arrendamiento de sus tierras de labor. Este debilitamiento de la nobleza rural se corresponde con un <u>fortalecimiento del poder real</u>. Surgen así <strong><u>monarquías autoritarias</u></strong> y se crean los grandes Estados modernos.
+  </li>
+</ol>
+</div>
+          <div class="card blue">
+<ol class="bu-alpha" style="counter-reset: alpha-counter 1;">
+  <li>Crecen las <strong>ciudades</strong> en detrimento de la población rural. Este desarrollo urbano favorece el afianzamiento de la <strong><u>burguesía</u></strong> como clase social, con lo que prosperan las actividades industriales y comerciales, y cobra gran importancia el <u>dinero</u> como valor de cambio. Paulatinamente, la nobleza, al entrar en crisis el sistema feudal, se va haciendo cortesana.
+  </li>
+</ol>
+</div>
+          <div class="card burgundy">
+<ol class="bu-alpha" style="counter-reset: alpha-counter 2;">
+  <li>La inquietud intelectual y el ansia por penetrar los secretos del mundo incentivan el <strong>desarrollo de la ciencia</strong>. Se estudia el cuerpo humano y se escruta el universo. Al Renacimiento corresponden, por ejemplo, el <u>descubrimiento de la circulación de la sangre</u>, mérito de Miguel Servet (1511-1553), y los <u>estudios astronómicos de Copérnico</u> (1473-1543) y <u>Galileo</u> (1564-1642).
+  </li>
+</ol>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: 3.2 Renacimiento. Características (II) + Vídeo Lutero -->
+    <section class="slide" data-index="12" data-title="3.2 Renacimiento. Características (II): Martín Lutero">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.2 Renacimiento. Características.</strong></h2>
+        </div>
+        <span class="slide-number">12 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card burgundy">
+<ol class="bu-alpha" style="counter-reset: alpha-counter 3;">
+  <li>El pensamiento crítico acaba definitivamente con la <strong>unidad religiosa en Europa</strong>. Se propagan las herejías (también frecuentes en la Edad Media) y adquieren enorme fuerza los <strong>movimientos religiosos reformadores</strong>, como los encabezados por el holandés Erasmo de Rotterdam (1466-1536) y el alemán <strong>Martín Lutero </strong>(1483-1546). Aunque sus posiciones son muy diferentes, ambos coinciden en plantear la necesidad de devolver a la Iglesia a su pureza original y de acabar con las prácticas licenciosas entre los eclesiásticos.
+  </li>
+</ol>
+</div>
+          <div class="card blue">
+<ol class="bu-alpha" style="counter-reset: alpha-counter 4;">
+  <li>La <strong>cultura</strong> recibe un gran impulso con la invención de la <strong><u>imprenta por Gutenberg</u></strong> (1400-1468), la cual propicia la difusión de las nuevas ideas y facilita la alfabetización. En consonancia con el desarrollo del Humanismo, se instauran en las universidades los <strong><em>studia humanitatis</em></strong> (gramática, retórica, poética, filosofía moral e historia), acabando así con el sistema educativo medieval, de base eminentemente escolástica.
+  </li>
+</ol>
+</div>
+          <div class="card gold">
+<ol class="bu-alpha" style="counter-reset: alpha-counter 5;">
+  <li>El arte renacentista desarrolla una <strong>estética basada en el Neoplatonismo</strong>, según el cual el mundo es bello porque refleja la belleza de Dios. El hombre en la tierra solo puede contemplar la belleza divina a través de las cosas hermosas de la naturaleza, obra del Creador. El <strong>amor a la belleza</strong> hace al hombre partícipe de la obra divina y es un adelanto en la tierra de los gozos que le esperan en el Cielo.
+  </li>
+</ol>
+</div>
+        </div>
+        <div class="pane-video" style="flex: 0.9;">
+          <div class="video-frame">
+            <video controls preload="metadata" poster="presentacion_recursos/image17.png">
+              <source src="presentacion_recursos/video1_lutero.mp4" type="video/mp4">
+              <source src="3.1 Martín Lutero.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: ACTIVIDADES -->
+    <section class="slide" data-index="13" data-title="Actividades (Pág. 121)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">13 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 121, nº 18</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: Pág. 121, nº 18 -->
+    <section class="slide" data-index="14" data-title="Pág. 121, nº 18: La primavera de Botticelli">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 121, nº 18</strong></h2>
+        </div>
+        <span class="slide-number">14 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.05;">
+          <div class="card burgundy">
+<p><strong>¿Podrías identificar las características del Renacimiento en el cuadro de Sandro Botticelli </strong><strong><em>La primavera </em></strong><strong>(1477)? </strong></p>
+</div>
+          <div class="card gold">
+<p><strong>Comenta el valor simbólico de la estación (la primavera) y del entorno (un bosque de naranjos, pinos y laureles) en que nos encontramos: la ruptura con la pintura religiosa medieval; la posición central que ocupa Venus, la diosa del amor, invitando al espectador a su jardín; el hecho de que Cupido vuele sobre ella; la presencia de Céfiro, dios del viento, de la ninfa Cloris y de Flora, a la derecha, como representantes de la Naturaleza; la danza de las tres Gracias, diosas del encanto y la belleza; y el papel de Mercurio, mensajero de los dioses y guía de las almas. </strong></p>
+</div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 1.1;">
+          <img src="presentacion_recursos/image18.png" alt="La primavera (1477), de Sandro Botticelli">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: 3.3 El Renacimiento en Italia: Los padres de la literatura italiana -->
+    <section class="slide" data-index="15" data-title="3.3 El Renacimiento en Italia: Los padres de la literatura italiana">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">15 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+<p><strong>LOS PADRES DE LA LITERATURA ITALIANA </strong></p>
+<p>Durante la <strong>primera mitad del siglo XIII </strong>conviven en Italia tres corrientes poéticas:</p>
+<ol class="bu-alpha">
+  <li>La <strong>poesía religiosa </strong>franciscana: <em>Cántico de las criaturas</em>, de San Francisco de Asís (1182-1226).
+  </li>
+  <li>La <strong>tradición provenzal-trovadoresca</strong>, en la que predominan las convenciones del <u>amor cortés</u>, trasunto literario del sistema feudal.
+  </li>
+  <li>La <strong>escuela siciliana</strong>, emparentada con la anterior por su temática, pero creadora de <strong>innovaciones formales </strong>que se consolidarán durante el Renacimiento:
+    <ul class="bu-sub-dot">
+      <li>el verso <strong>endecasílabo</strong>, combinado a veces con el heptasílabo,</li>
+      <li>y la más fructífera combinación estrófica: el <strong>soneto</strong>.</li>
+    </ul>
+  </li>
+</ol>
+</div>
+          <div class="card burgundy">
+<p>Sin embargo, en la <strong>segunda mitad del siglo XIII </strong>irrumpe una nueva corriente que tiene su foco en <u>Bolonia</u> y, sobre todo, <u>Florencia</u>. Entre los poetas que integran esta nueva poesía destacan especialmente el boloñés <u>Guido Guinizelli </u>(1230-1276) y los florentinos <u>Guido Cavalcanti</u> (1258-1300) y <strong><u>Dante Alighieri </u></strong>(1265-1321). Su poesía, marcadamente innovadora, se conoce como <strong><em>dolce stil novo</em></strong>.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.72;">
+          <img src="presentacion_recursos/image19.png" alt="La creación de Adán - Miguel Ángel">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: 3.3 El Renacimiento en Italia: El Dolce Stil Novo -->
+    <section class="slide" data-index="16" data-title="3.3 El Renacimiento en Italia: El Dolce Stil Novo">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">16 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card burgundy">
+<p><strong>EL </strong><strong><em>DOLCE STIL NOVO</em></strong></p>
+<p>La poética del <strong><u>dolce stil novo </u></strong>representó:</p>
+<ul class="bu-diamond">
+  <li>la superación definitiva de la lírica provenzal
+  </li>
+  <li>y la consolidación de la <strong>teoría neoplatónica del amor</strong> en la lírica italiana. Para los poetas "stilnovistas", el amor no es una pasión que persigue el goce sexual, sino un sentimiento que eleva hasta la unión con Dios a través de la belleza femenina. Por ello, la amada se presenta como un ser angelical, cuya hermosura es reflejo de su virtud interior.
+  </li>
+</ul>
+<p>Con esta concepción del amor, los poetas del <em>dolce stil novo </em>expresaban su sentimiento de <u>superioridad intelectual y moral </u>frente a otros grupos sociales, como la vieja aristocracia de sangre, y la nueva burguesía urbana, cuyo poder residía en el dinero. <strong>Se posicionaban, en definitiva, contra todo lo material, reivindicado como ideal de vida la nobleza espiritual y cultural.</strong></p>
+<p>Formalmente, el <em>dolce stil novo </em>se caracteriza por un lenguaje en apariencia espontáneo, pero cuidado y minucioso, así como por adoptar las formas métricas de la escuela siciliana.</p>
+</div>
+          <div class="card gold">
+<p><strong>La </strong><strong><em>donna angelicata</em></strong></p>
+<p>El tópico de la <em>donna angelicata </em>o mujer angelical fue creado por el poeta <u>Guido Guinizelli</u> y perfeccionado por <strong>Dante</strong>. La mujer se convierte en <strong>símbolo de la perfección espiritual</strong>, que puede alcanzarse mediante el amor. Su belleza física es reflejo de su belleza interior: cabello rubio, piel blanca, ojos claros, mejillas sonrosadas, labios rojos, dientes blancos, cuello largo y blanco, de cisne.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.55;">
+          <img src="presentacion_recursos/image20.jpeg" alt="Donna angelicata">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: 3.3 El Renacimiento en Italia: Dante y Vita nuova -->
+    <section class="slide" data-index="17" data-title="3.3 El Renacimiento en Italia: Dante (1265-1321)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">17 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card burgundy">
+<p><strong>DANTE (1265-1321)</strong></p>
+<ul class="bu-diamond">
+  <li>Sin duda, el poeta florentino <strong>Dante Alighieri</strong> es uno de los autores que mejor sintetiza el <u>tránsito desde una mentalidad plenamente medieval</u> a la nueva sensibilidad renacentista.
+  </li>
+  <li>Aunque sus poemas de juventud se inscriben en el movimiento del <em>dolce stil novo</em>, su aportación a la literatura universal supera la poética de esa corriente. Su obra maestra, la <strong>Divina Comedia</strong>, es al tiempo una síntesis de toda la sabiduría del medievo y un anuncio de la admiración hacia los clásicos propia de los humanistas del Renacimiento.
+  </li>
+  <li>De su extensa obra vamos a destacar dos obras: <em>La vita nuova </em>y la <em>Divina comedia.</em>
+  </li>
+</ul>
+</div>
+          <div class="card blue">
+<p><strong>La vida nueva (</strong><strong><em>Vita nuova</em></strong><strong>)</strong></p>
+<p>A lo largo de este poemario Dante refleja su <strong>amor idealizado por Beatriz</strong>, a quien apenas conocía. La versión definitiva apareció en <u>1292</u>, aunque su composición arrancó dos años antes, a raíz de la muerte de la joven.</p>
+<p>La obra consta de <strong>cuarenta y dos rimas</strong> y de diversos comentarios en prosa. La influencia de la escuela siciliana y del <em>dolce stil novo</em> es muy evidente en su <strong>argumento</strong>: Beatriz -a quien no se la menciona directamente, sino escondida en otros nombres- es venerada como una criatura celeste que recuerda el mundo divino en la tierra, un ángel que conduce al poeta hacia la virtud y que le acerca a Dios.</p>
+<p>Dante, sin embargo, supone una superación del "stilnovismo" al someter sus sentimientos a un análisis más detallado. Por ello, su poetización del amor resulta más efectiva y verosímil, no tan artificial ni tan impersonal como en el caso de los poetas precedentes.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: 3.3 El Renacimiento en Italia: La Divina comedia -->
+    <section class="slide" data-index="18" data-title="3.3 El Renacimiento en Italia: La Divina comedia">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">18 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card burgundy">
+<p><strong>La Divina comedia</strong></p>
+<p>La gran creación de Dante fue la Divina Comedia, un extenso poema alegórico compuesto durante casi quince años: <strong>desde 1307 hasta 1321</strong>, cuando muere el poeta.</p>
+<p>La obra cuenta el viaje que hace el propio poeta a través del <strong>Infierno</strong>, el <strong>Purgatorio</strong> y el <strong>Paraíso</strong>.</p>
+<ul class="bu-dot">
+  <li>En el Infierno y en el Purgatorio es guiado por <u>Virgilio</u>, el gran poeta latino, por quien Dante profesaba una rendida admiración,
+  </li>
+  <li>y en el Paraíso su guía es <u>Beatriz</u>.
+  </li>
+</ul>
+<p>Dante va encontrándose con <u>distintos personajes</u>, condenados o bienaventurados, y mediante ellos <strong>sintetiza la historia de la humanidad</strong> desde la óptica del humanismo cristiano, enjuiciando también la situación social, política y religiosa de su <strong>época</strong>.</p>
+</div>
+          <div class="card gold">
+<p>El <strong>número tres</strong>, que simboliza la Santísima Trinidad, está en la base de la obra:</p>
+<ul class="bu-dot">
+  <li>Se divide en <strong>tres partes</strong>: Infierno, Purgatorio y Paraíso.
+  </li>
+  <li>Cada parte cuenta con <strong>treinta y tres cantos</strong>, más uno introductorio en el Infierno, sumando un total de cien.
+  </li>
+  <li>La obra está compuesta por <u>versos endecasílabos</u>, distribuidos en un número variable de <strong>tercetos encadenados </strong>en cada canto.
+  </li>
+</ul>
+<p>Desde un <strong>punto de vista formal</strong>, la Divina comedia afianzó el <u>uso del endecasílabo</u> (que se convierte en el verso por excelencia de la poesía culta), crea los <u>tercetos encadenados</u> (propios de poemas solemnes y graves) y convierte el <u>toscano</u>, la variedad del italiano que emplea, en lengua literaria clásica.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: ACTIVIDADES -->
+    <section class="slide" data-index="19" data-title="Actividades (Pág. 122)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">19 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 122, nº 23 (a, b, c, d)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: Pág. 122, nº 23 (a, b, c, d) -->
+    <section class="slide" data-index="20" data-title="Pág. 122, nº 23 (a, b, c, d)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 122, nº 23 (a, b, c, d)</strong></h2>
+        </div>
+        <span class="slide-number">20 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 0.95;">
+          <div class="card q-card tone-blue"><p><strong>a. Sitúa el fragmento en el conjunto de la obra. </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Qué personaje acompaña a Dante? ¿Qué lugar pisan? ¿Qué pueden ver? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. Describe el tormento que sufren los lujuriosos. Explica su sentido simbólico (agitación física como castigo a la agitación del alma). </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. En el fragmento aparecen distintos personajes históricos y ficticios. ¿Cuáles? ¿Por qué han sido condenados a sufrir las penas eternas?</strong></p></div>
+        </div>
+        <div class="pane-image-row" style="flex: 1.25;">
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image21.png" alt="Fragmento Divina Comedia I"></div>
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image22.png" alt="Fragmento Divina Comedia II"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: 3.3 El Renacimiento en Italia: Petrarca -->
+    <section class="slide" data-index="21" data-title="3.3 El Renacimiento en Italia: Petrarca (1304-1374)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">21 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.38;">
+          <div class="card burgundy">
+<p><strong>PETRARCA (1304-1374)</strong></p>
+<p>Francesco Petrarca nació en Arezzo en 1304. Contaba ocho años cuando se instaló con sus padres en <strong>Aviñón</strong> (Francia), donde residía la corte papal. Fue allí, en 1327, donde conoció a <strong>Laura</strong>, de quien se enamoró al instante y que sería la inspiradora de toda su poesía amorosa. Por desgracia, la dama murió en 1348, víctima de la peste que entonces asolaba Europa.</p>
+</div>
+          <div class="card blue">
+<p>Francesco Petrarca puede ser considerado como el <strong>primer humanista</strong> en el verdadero sentido de la palabra. Fue un gran admirador de la Antigüedad y de la lengua latina, la cual llegó a dominar perfectamente. Para Petrarca, el objetivo del estudio de los clásicos no era la copia, sino la emulación superadora a partir de un conocimiento profundo del mundo antiguo. En especial, tomó a Cicerón como modelo para sus obras en prosa y a Virgilio para su poesía.</p>
+</div>
+          <div class="card gold">
+<p>En italiano escribió dos obras. La más importante es el <strong><em>Cancionero</em></strong>, que fue ampliando a lo largo de toda su vida desde 1330.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;">
+          <img src="presentacion_recursos/image23.jpeg" alt="Francesco Petrarca">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22: 3.3 El Renacimiento en Italia: El Cancionero -->
+    <section class="slide" data-index="22" data-title="3.3 El Renacimiento en Italia: El Cancionero">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">22 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 0.65;">
+          <img src="presentacion_recursos/image24.jpeg" alt="Petrarca y Laura">
+        </div>
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card gold">
+<p><strong>El Cancionero</strong></p>
+<ul class="bu-diamond">
+  <li>En su forma definitiva, consta de <strong>trescientos sesenta y seis composiciones</strong>, con predominio de los <u>sonetos</u> (317), aunque figuran también canciones y otros subgéneros líricos.
+  </li>
+  <li>El <strong>tema principal </strong>es el <u>amor por Laura</u>, y en relación con él todo el conjunto se divide en <strong>dos partes</strong>:
+    <ul class="bu-sub-dot">
+      <li>los <u>poemas en vida</u>, donde se glorifica a la amada,</li>
+      <li>y los <u>poemas en muerte</u>, donde se lamenta su ausencia con tono elegíaco.</li>
+    </ul>
+  </li>
+  <li>En el <strong>estilo</strong> destaca el <strong><u>uso de figuras basadas en la oposición</u></strong>, con las que se expresa el carácter contradictorio del sentimiento amoroso: antítesis, paradojas, oxímoron. También son abundantes las imágenes, los símbolos y las metáforas, con las que se ensalzan las cualidades de Laura, que encarna el ideal de la <em>donna angelicata</em>.
+  </li>
+  <li>Por otra parte, llama la atención que se recuperen <strong>tópicos latinos </strong>como la <em>descriptio puellae</em>, <em>locus amoenus</em>, <em>carpe diem </em>o <em>tempus fugit</em>.
+  </li>
+  <li>La <strong>influencia</strong> del Cancionero sobre la poesía posterior fue inmensa; sus formas, sus temas y su estilo configuraron una corriente lírica propia, el <strong>petrarquismo</strong>, con autores como Pietro Bembo (1470-1547) o Pietro Aretino (1492-1556).
+  </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: 3.3 El Renacimiento en Italia: Boccacio -->
+    <section class="slide" data-index="23" data-title="3.3 El Renacimiento en Italia: Boccacio (1313-1375)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">23 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.42;">
+          <div class="card burgundy">
+<p><strong>BOCCACIO (1313-1375)</strong></p>
+<ul class="bu-diamond">
+  <li>Nació en Florencia en el seno de una familia de ricos mercaderes. Siendo aún adolescente su padre, su padre le envió a Nápoles a que aprendiera el oficio mercantil.
+  </li>
+  <li>Mostró poco interés por el oficio mercantil ➔ estudios de derecho canónico.
+  </li>
+  <li>Encontró la verdadera vocación en las letras.
+  </li>
+  <li>Utilizó el latín como lengua literaria en algunas de sus obras.
+  </li>
+  <li>Sus creaciones más destacadas fueron en lengua vulgar italiana ➔ Junto con Dante y Petrarca, Boccacio es uno de los padres de la literatura italiana.
+  </li>
+  <li>Gracias a Petrarca fue un gran admirador de Ovidio y Apuleyo.
+  </li>
+  <li>Siendo aún muy joven, se enamoró y mantuvo una relación con una dama napolitana, cuya identidad se desconoce y que podría haberle inspirado el personaje de Fiammetta, que aparece en numerosas obras del autor.
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.62;">
+          <img src="presentacion_recursos/image25.jpeg" alt="Giovanni Boccaccio">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: 3.3 El Renacimiento en Italia: El Decamerón (I) -->
+    <section class="slide" data-index="24" data-title="3.3 El Renacimiento en Italia: El Decamerón (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">24 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card burgundy">
+<p><strong>El Decamerón </strong></p>
+<p>El Decamerón (“los diez días”) es la obra maestra de Boccaccio y una de las obras narrativas más notables de la historia de la literatura. Escrita entre 1350 y 1355, debe entenderse en el contexto de la epidemia de peste vivida en Europa a mediados del siglo XIV.</p>
+<ul class="bu-diamond">
+  <li><strong>Argumento.</strong> La acción se sitúa en Florencia en 1348, fecha aciaga para la ciudad, asolada por la peste que se extendía por Europa. Diez jóvenes -siete mujeres y tres hombres- se retiran a una villa en las afueras de la urbe, huyendo de la epidemia. Durante diez días -de aquí el título de la obra-, y con el fin de distraerse, cada uno ha de contar diariamente una historia, lo que supone un total de cien relatos o novelas. Cada jornada transcurre bajo el «reinado» de uno de los jóvenes, que es quien determina la orientación temática de las narraciones.
+  </li>
+</ul>
+</div>
+          <div class="card blue">
+<ul class="bu-diamond">
+  <li>La <strong>estructura</strong> de cada jornada es férrea. Comienza con una <u>breve introducción</u>, a la que sigue la decisión de rey o reina del día del tema de los cuentos. Tras el establecimiento del asunto, se van narrando los relatos precedidos por un escueto resumen. La jornada finaliza con una breve <u>conclusión</u>.
+  </li>
+  <li>La <strong>ambientación</strong> de la mayoría de los cuentos se sitúa en la época contemporánea de la obra, los siglos XIII y XIV, en el Mediterráneo, sobre todo, en Florencia y Nápoles.
+  </li>
+  <li><strong>Personajes</strong>: reales y famosos, desconocidos o inventados. Algunos ejemplifican tipos humanos - como el simple, el burlador sinvergüenza o el fraile lascivo- y a través de ellos Boccaccio nos ofrece un retrato variopinto y crítico de la sociedad italiana del siglo XIV.
+  </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: 3.3 El Renacimiento en Italia: El Decamerón (II) -->
+    <section class="slide" data-index="25" data-title="3.3 El Renacimiento en Italia: El Decamerón (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">25 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card gold">
+<ul class="bu-diamond">
+  <li><strong>Coexistencia</strong> de la técnica y fantasía medieval con los elementos renacentistas.
+  </li>
+  <li><strong>Refleja</strong> el mundo burgués de su época.
+  </li>
+  <li>El <strong>estilo</strong> es elegante y sencillo, con un frecuente <u>uso del humor</u>. El empleo del italiano y no del latín en una obra en prosa fue una novedad que equipara la importancia de Boccaccio con la de Dante y Petrarca.
+  </li>
+  <li><strong>Temas</strong>:
+    <ul class="bu-sub-dot">
+      <li>el amor boccacciano, que es sensual, pero no se complace en lo obsceno. La pasión lleva a algunos personajes a la locura, aunque también al sacrificio que engrandece al ser humano.</li>
+      <li>El ingenio o inteligencia, para superar las dificultades.</li>
+      <li>La crítica de las costumbres sociales, es un tema determinante en la obra gracias a la abundancia de tipos humanos que la pueblan.</li>
+    </ul>
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image26.png" alt="Diez días de cuentos">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: ACTIVIDADES -->
+    <section class="slide" data-index="26" data-title="Actividades (Pág. 123 y Aules)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">26 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 123, nº 24 (todos)</strong></li>
+  <li><strong> Boccaccio. Actividad complementaria (Aules)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: Pág. 123, nº 24 (todos) -->
+    <section class="slide" data-index="27" data-title="Pág. 123, nº 24 (todos)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 123, nº 24 (todos)</strong></h2>
+        </div>
+        <span class="slide-number">27 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card q-card tone-blue"><p><strong>a. ¿Quién inspira los versos de Petrarca? Señala cómo se expresa esta idea en el primer cuarteto. </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. Describe cuál es el ánimo de la voz poética y a qué se debe su estado. </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. ¿Cómo ha influido la muerte de la dama en el enamorado? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. Explica la relación que se establece entre amor, dolor, poesía y fama. </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. Comenta el motivo del llanto. ¿Qué sentimientos lo provocan? ¿Se oculta o se manifiesta? ¿Aprecias algún cambio con respecto a la Edad Media? ¿Cómo se valoran ahora las emociones? </strong></p></div>
+<div class="card q-card tone-teal"><p><strong>f. Comenta el último terceto. El amante sigue cautivo. ¿Ante qué tipo de amada estamos? </strong></p></div>
+<div class="card q-card tone-blue"><p><strong>g. Relaciona estos rasgos con el petrarquismo.</strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image27.png" alt="Poema Petrarca Pág. 123">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: Actividad complementaria (Aules) -->
+    <section class="slide" data-index="28" data-title="Actividad complementaria (Aules): Boccaccio">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Actividad complementaria (Aules)</strong></h2>
+        </div>
+        <span class="slide-number">28 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.15;">
+          <div class="card q-card tone-blue"><p><strong>a. ¿Qué opina Griselda sobre la nueva esposa de Gualtieri? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Cuál es el motivo que Gualtieri da para haber tratado mal a Griselda? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. ¿Qué revela Gualtieri sobre el destino de los hijos de Griselda? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. ¿Qué crees que simbolizan las heridas que Gualtieri infligió a Griselda? </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. ¿Qué tema principal se puede identificar en este fragmento del texto?</strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.95;">
+          <img src="presentacion_recursos/image28.png" alt="Texto Boccaccio Griselda">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 29: 3.3 El Renacimiento en Italia: Maquiavelo -->
+    <section class="slide" data-index="29" data-title="3.3 El Renacimiento en Italia: Maquiavelo">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">29 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 0.6;">
+          <img src="presentacion_recursos/image29.gif" alt="Nicolás Maquiavelo">
+        </div>
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card burgundy">
+<p><strong>LA PROSA DE IDEAS: MAQUIAVELO (1469-1527) </strong></p>
+<p><strong>Nicolás Maquiavelo </strong>es el mayor representante del <u>pensamiento político</u> del Renacimiento.</p>
+<p>Su vida está ligada a la ciudad de <strong>Florencia</strong>, donde ejerció distintos cargos públicos y tuvo que enfrentarse a las intrigas de los Médici, que pretendían controlar la ciudad.</p>
+<p>Sus ideas sobre política, expuestas en <strong><em>El príncipe</em></strong> (1513), parten de la base de que la moral y la religión no deben interferir en la labor de los gobernantes. El libro constituye una exhaustiva relación de las medidas que, para llevar las riendas del Estado, deben servir al gobernante, a quien Maquiavelo reserva el derecho al uso de la fuerza y la crueldad si el sostenimiento del Estado lo requiere.</p>
+</div>
+          <div class="card blue">
+<p><u>Las consideraciones políticas de Maquiavelo no se asientan en la idea de cómo deberían ser las cosas, sino en cómo han sido y cómo son</u>. Para ello ilustra sus propuestas con ejemplos extraídos de la historia. Un buen ejemplo de esto es su otra gran obra: los Discursos sobre la primera década de Tito Livio (1512-1517).</p>
+<p>Suele atribuirse a Maquiavelo la célebre máxima de que <u>«el fin justifica los medios»</u>, la cual nunca escribió, pero podría servir como perfecta síntesis de su pensamiento político, orientado hacia la eficacia a cualquier precio.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: 3.3 El Renacimiento en Italia: La Commedia dell'Arte -->
+    <section class="slide" data-index="30" data-title="3.3 El Renacimiento en Italia: La Commedia dell’Arte">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.3 El Renacimiento en Italia</strong></h2>
+        </div>
+        <span class="slide-number">30 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.38;">
+          <div class="card gold">
+<p><strong>LA COMMEDIA DELL’ARTE</strong></p>
+<p>Se trata de la forma teatral más importante del Renacimiento.</p>
+<p>Su origen se remonta a la <em>fabula atellana </em>de la literatura clásica, caracterizada por la aparición de una serie de <strong>personajes fijos </strong>en torno a los cuales se construía una trama cómica.</p>
+<p>La <strong><em>Commedia dell’Arte</em></strong> se basa en <strong>arquetipos</strong>, fácilmente identificables por su atuendo, su maquillaje y su comportamiento: Arlequín, Brighella, Polichinela, Colombina, Pantaleón, el Doctor, el Capitán o los enamorados.</p>
+</div>
+          <div class="card burgundy">
+<p>La <strong>representación</strong> <u>se improvisaba</u> a partir de un <u>guion muy sencillo</u> que indicaba los <em>canovacci</em>, los argumentos prefijados, y los <em>lazzi</em>, chistes, canciones y danzas que utilizarían los actores.</p>
+<p>La obra se desarrollaba en <strong>tres actos </strong>y solía consistir en un enredo amoroso con raptos, engaños, peleas, duelos, y cierta dosis de crítica social.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.68;">
+          <img src="presentacion_recursos/image30.png" alt="Arlequín - Commedia dell'Arte">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: 3.4 Renacimiento y Clasicismo en Francia: Montaigne (I) -->
+    <section class="slide" data-index="31" data-title="3.4 Renacimiento y Clasicismo en Francia: Montaigne (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">31 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="grid-2" style="flex: 1.15;">
+          <div class="card blue">
+<p><strong>EL ENSAYO: MONTAIGNE (1533-1592)</strong></p>
+<ul class="bu-diamond">
+  <li>Humanista, pensador, moralista y político, fue el creador de un nuevo género literario, el <strong><u>ensayo</u></strong>, que adquirió gran importancia en épocas posteriores.
+  </li>
+  <li>Nació cerca de Burdeos en el seno de una familia de judíos acomodados de origen español.
+  </li>
+  <li>Recibió una cultura esmerada (estudió Leyes y dominaba el latín).
+  </li>
+</ul>
+</div>
+          <div class="card gold">
+<p><strong>Ensayos (1580).</strong></p>
+<ul class="bu-diamond">
+  <li>Los ensayos se caracterizan por ser <strong>breves</strong>. Además, son <strong>fragmentarios</strong>, <strong>diversos</strong>, <strong>inconexos</strong>, pues no se organizan por materias, de modo que se pasa de un tema a otro sin ninguna ligazón.
+  </li>
+  <li>Predomina la idea de que el <strong>conocimiento</strong> ha de servir para desarrollar un arte de vivir que nos prepare para la muerte.
+  </li>
+  <li>Corriente de pensamiento ➔ <strong>escepticismo</strong> (el comportamiento humano a lo largo de la historia le hacía ver tan grandes contradicciones, que la única actitud posible era la duda).
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.72;">
+          <img src="presentacion_recursos/image31.png" alt="Características del ensayo">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: 3.4 Renacimiento y Clasicismo en Francia: Montaigne (II) -->
+    <section class="slide" data-index="32" data-title="3.4 Renacimiento y Clasicismo en Francia: Montaigne (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">32 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card burgundy">
+<p><strong>Características:</strong></p>
+<ul class="bu-diamond">
+  <li><strong>Subjetividad</strong> (el principal centro de interés de la obra es el propio autor).
+  </li>
+  <li>La <strong>estructura abierta</strong> (su objetivo no es aportar soluciones, sino definir mejor los términos del problema al que se enfrenta).
+  </li>
+  <li>La <strong>modalidad argumentativa</strong> (reflexiones, citas de clásicos, sucesos históricos, anécdotas, símiles).
+  </li>
+</ul>
+</div>
+          <div class="card blue">
+<p><strong>Temas:</strong></p>
+<ul class="bu-diamond">
+  <li>Análisis de emociones (la tristeza, la pasión, el miedo)
+  </li>
+  <li>Cuestiones morales (la ociosidad, la mentira, la constancia),
+  </li>
+  <li>Costumbres, políticos, sociales, la condición humana, figuras históricas…
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.7;">
+          <img src="presentacion_recursos/image32.png" alt="Michel de Montaigne">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: ACTIVIDADES -->
+    <section class="slide" data-index="33" data-title="Actividades (Maquiavelo - Aules)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">33 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Maquiavelo. Actividad complementaria (Aules)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: 3.4 El teatro francés en los siglos XVI y XVII (I) -->
+    <section class="slide" data-index="34" data-title="3.4 El teatro francés en los siglos XVI y XVII (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">34 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.3;">
+          <div class="card blue">
+<p><strong>EL TEATRO FRANCÉS EN LOS SIGLOS XVI Y XVII</strong></p>
+<p>En la primera mitad del siglo XVI pervivían en el teatro francés los <strong>géneros medievales</strong>, como los <u>misterios</u>, pero hacia la mitad del siglo cobraron fuerza las representaciones de los comediantes italianos, imitados pronto por las compañías francesas.</p>
+<p>Poco a poco, el teatro fue derivando hacia el <strong>Barroco</strong>, que triunfó en las <u>primeras décadas del siglo XVII</u> caracterizado por:</p>
+<ul class="bu-dot">
+  <li>la transgresión de las reglas;
+  </li>
+  <li>ruptura de las unidades de tiempo, lugar y acción,
+  </li>
+  <li>mezcla de lo trágico y lo cómico, etc.
+  </li>
+</ul>
+</div>
+          <div class="card burgundy">
+<p>En esta línea destacaron autores como <strong>Paul Scarron</strong> (1610-1660), <strong>Philippe Quinault</strong> (1635-1688) y <strong>Jean de Rotrou</strong> (1609-1650).</p>
+<p>Este tipo de teatro ajeno se prolongó <strong>hasta el primer tercio del siglo XVII</strong>. A partir de este momento la reacción contra el Barroco experimentó un fuerte impulso y fue en el teatro donde se mostró con mayor virulencia.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.8;">
+          <img src="presentacion_recursos/image33.png" alt="Teatro francés en Versalles">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35: 3.4 El teatro francés en los siglos XVI y XVII (II) -->
+    <section class="slide" data-index="35" data-title="3.4 El teatro francés en los siglos XVI y XVII (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">35 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card blue">
+<p><strong>EL TEATRO FRANCÉS EN LOS SIGLOS XVI Y XVII</strong></p>
+<p>El cambio de orientación en la escena francesa vino dado por la insistencia con que los preceptistas reivindicaban una <strong>vuelta a las normas clásicas aristotélicas</strong>, fijando los ojos en los modelos clásicos. Por otro lado, a partir de Descartes, cuyo <em>Discurso del método </em>(1637), fue ganando terreno la importancia de la <strong>razón</strong> como instrumento para interpretar el mundo, con lo que se impuso el gusto por lo comedido, lo equilibrado, lo claro.</p>
+<p>El <strong><u>Clasicismo</u></strong> se considera la época dorada del teatro francés, ya que en ella se encuentran tres de sus más grandes dramaturgos: <strong>Pierre Corneille</strong>, <strong>Jean Racine </strong>y, tal vez por encima de todos, <strong>Molière</strong>.</p>
+<p>Este giro hacia el Clasicismo fue bien acogido por el poder, que veía en este teatro alejado de los excesos un mayor refinamiento aristocrático. Con este espíritu clasicista se impusieron en el teatro francés estos rasgos esenciales:</p>
+</div>
+          <div class="card gold">
+<p class="alpha-plain">a Clara separación entre tragedia y comedia. La primera siempre se escribía en verso; la comedia podía estar escrita en verso o en prosa.</p>
+<p class="alpha-plain">b Distribución de los personajes según los géneros: los nobles o graves eran exclusivos de la tragedia; los burgueses y los plebeyos, de la comedia.</p>
+<p class="alpha-plain">c Imposición de las tres unidades: de tiempo, de lugar y de acción.</p>
+<p class="alpha-plain">d División de la obra en cinco actos.</p>
+<p class="alpha-plain">e Exclusión de todo tipo de excesos (escenas truculentas, aparato escénico complicado, etc.), considerados de mal gusto.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 36: 3.4 Molière, el gran comediógrafo francés (Vídeo) -->
+    <section class="slide" data-index="36" data-title="3.4 Molière, el gran comediógrafo francés (Vídeo)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">36 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink:0; text-align:center;">
+<p><strong>MOLIÈRE, EL GRAN COMEDIÓGRAFO FRANCÉS</strong></p>
+</div>
+        <div class="video-frame" style="flex: 1; min-height: 0;">
+          <video controls preload="metadata" poster="presentacion_recursos/image34.png">
+            <source src="presentacion_recursos/video2_moliere_biografia.mp4" type="video/mp4">
+            <source src="3.2 Apunte biográfico. Molière, el gran sátiro francés..mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 37: 3.4 Molière: Biografía y trayectoria -->
+    <section class="slide" data-index="37" data-title="3.4 Molière: Biografía y trayectoria">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">37 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card blue">
+<p>Jean-Baptiste Poquelin, que pasó a la posteridad con el nombre de Molière, está considerado <strong>el mayor comediógrafo francés</strong> de la historia.</p>
+<p>Nació en París en 1622. Hijo de un tapicero real, recibió una esmerada formación con los jesuitas, lo que le auguraba un porvenir acomodado; pero a los veinte años renunció a él para dedicarse al teatro. Con veintiún años fundó en colaboración con la familia Béjart su propia compañía teatral, con la que recorrió Francia, alternando el ejercicio de actor con la creación de sus propias obras, bufonadas al estilo de las de la <em>Commedia dell’arte</em>.</p>
+<p>Tras su regreso a París en 1658, comenzó a obtener sus primeros éxitos con divertidas farsas en las que se entreveían las <strong>comedias de caracteres</strong>, que acabaron por consagrarlo y que serían su gran contribución al teatro.</p>
+</div>
+          <div class="card burgundy">
+<p>Sus comedias, de una crítica acendrada dirigida contra poderosos sectores burgueses y aristocráticos, le granjearon enconadas enemistades, hasta el punto de ser prohibidas en numerosas ocasiones. No obstante, gozó del favor y la protección del rey, Luis XIV.</p>
+<p>En 1673, durante una de las representaciones de su última comedia, <strong><em>El enfermo imaginario</em></strong>, sufrió un ataque cuando interpretaba el papel del enfermo y murió unas horas después (al parecer, al salir a escena iba vestido de amarillo, razón por la cual los actores, supersticiosos, tratan de evitar dicho color).</p>
+<p>De la <strong>treintena</strong> de comedias que le debemos, destacan las que escribió en la década de los sesenta. En ellas recrea vicios y defectos encarnados en personajes que han pasado a ser prototipos universales.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: 3.4 Molière: Principales obras teatrales -->
+    <section class="slide" data-index="38" data-title="3.4 Molière: Principales obras teatrales">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">38 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 8px;">
+        <div class="card blue" style="flex-shrink:0;">
+<p><strong>Principales obras teatrales</strong></p>
+</div>
+        <div class="grid-2" style="flex: 1;">
+          <div class="card burgundy">
+<p><strong><u>Tartufo</u></strong> (1664), escrita en verso, es una sátira contra la hipocresía religiosa. El protagonista que da título a la obra es un farsante que, fingiendo ser un colmo de bondades con la finalidad de lucrarse, se gana la confianza y el favor de Orgón, un necio beato y rico que lo acoge en su casa y pretende integrarlo en la familia casándolo con su propia hija.</p>
+</div>
+          <div class="card gold">
+<p><strong><u>Don Juan o el festín de piedra</u></strong><strong> </strong>(1665) es una recreación del personaje libertino que había llevado a los escenarios por primera vez el español Tirso de Molina con <em>El burlador de Sevilla</em>. Molière dota a este personaje de unos rasgos propios del ambiente cortesano francés, pero mantiene en él la absoluta falta de escrúpulos y el descreimiento de quien está por encima de cualquier ley o convención moral.</p>
+</div>
+          <div class="card blue">
+<p><strong><u>El misántropo </u></strong>(1666) es una crítica al mundo superficial y frívolo de la «buena sociedad» parisina. Alcestes, el protagonista, es un hombre cuyos principios le impiden adaptarse a estos ambientes mundanos. Incapaz de renunciar a su integridad, la lleva a unos extremos ridículos que provocan la burla de los demás personajes.</p>
+</div>
+          <div class="card burgundy">
+<p><strong><u>El avaro</u></strong><strong> </strong>(1668), escrita en prosa, razón por la cual el público, habituado a obras en verso, se apartó de ella, está inspirada en <em>La olla</em> de Plauto. Su protagonista es Harpagón, un mezquino burgués viudo, enriquecido con la usura y obsesionado con la posibilidad de ver menguada su fortuna. Pretende convertir en víctimas de su actitud a Mariana, la joven humilde con la que decide casarse porque está habituada a la estrechez y gastará poco; a su hijo Cleanto, destinado a casarse con una viuda aunque está enamorado de Mariana; y a su hija Elisa, a quien pretende unir con un anciano que no exige dote, a pesar de que la muchacha está enamorada de Valerio.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39: 3.4 Molière: El enfermo imaginario -->
+    <section class="slide" data-index="39" data-title="3.4 Molière: El enfermo imaginario (1673)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">39 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.15;">
+          <div class="card burgundy">
+<p><strong><u>El enfermo imaginario</u></strong><strong> </strong>(1673) presenta a un burgués, Argán, que, aquejado de una extremada hipocondría, despilfarra su fortuna pagando los servicios de médicos y boticarios, que carecen de los conocimientos necesarios para curar enfermedades. De este modo, la obra se convierte en una <strong>divertida y feroz crítica a la falsedad</strong>, centrada en este caso en el ejercicio de la profesión médica. En solidaridad con este tema principal, <strong>la obra censura los matrimonios de conveniencia</strong>. Por una parte, la esposa del propio enfermo finge un amor inexistente a la espera de que el marido fallezca para heredar sus posesiones. Por otra, la hija del protagonista es forzada por su padre a contraer un matrimonio descabellado con un joven médico, necio y engolado, mientras ella está enamorada de otro joven. Vemos así un tercer tema que es igualmente objeto de la afinada crítica del autor: <strong>el abuso de la autoridad paterna</strong>.</p>
+</div>
+        </div>
+        <div class="pane-video" style="flex: 0.95;">
+          <div class="video-frame">
+            <video controls preload="metadata" poster="presentacion_recursos/image35.png">
+              <source src="presentacion_recursos/video3_enfermo_imaginario.mp4" type="video/mp4">
+              <source src="3.3 Moliere. Representación de «El enfermo imaginario».mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: 3.4 Molière: Estilo e intención dramática -->
+    <section class="slide" data-index="40" data-title="3.4 Molière: Estilo e intención dramática">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.4 Renacimiento y Clasicismo en Francia</strong></h2>
+        </div>
+        <span class="slide-number">40 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card blue">
+<p><strong>Estilo e intención dramática</strong></p>
+<p>La <strong>intención satírica </strong>con que Molière concebía sus obras tiene además una clara derivación hacia la <strong>intención moral</strong>, dado que se ridiculiza a un personaje que provoca con su actitud el daño a los demás.</p>
+<p>Esta doble intención se plasma con la <strong>creación de personajes representativos de un carácter </strong>(el vanidoso, el avaro, el hipócrita, el pedante, el santurrón); el autor parte de la observación de un tipo individual, con sus circunstancias personales, pero la pasión que lo domina (las apariencias, el dinero, la devoción) está llevada a tal extremo que adquiere el <strong>rango de prototipo universal</strong>.</p>
+</div>
+          <div class="card gold">
+<p>El rasgo más característico en el estilo de Molière es la impresión de <strong>naturalidad</strong> en el lenguaje que emplean los personajes, que está lleno de <strong>expresividad</strong> y <strong>viveza</strong>, con un acusado tono conversacional.</p>
+<p>Significativa es también la observación del <strong>decoro poético</strong>, según el cual cada personaje se expresa según su condición y nivel. El <strong>humor</strong> se apoya en recursos de tres tipos:</p>
+<ul class="bu-dot">
+  <li><u>estructurales</u> (malentendidos, engaños),
+  </li>
+  <li><u>escenográficos</u> (disfraces),
+  </li>
+  <li><u>dramáticos</u> (gestos, muecas) <u>y verbales</u> (dobles sentidos, incorrecciones, repeticiones, exageraciones).
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.65;">
+          <img src="presentacion_recursos/image36.png" alt="Molière">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 41: ACTIVIDADES -->
+    <section class="slide" data-index="41" data-title="Actividades (Págs. 128 y 130)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">41 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 128, nº 29 (a, b, c, d), nº 40</strong></li>
+  <li><strong> Pág. 130, nº 47 (a, b, c, d, e)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 42: Pág. 128, nº 29 (a, b, c, d) -->
+    <section class="slide" data-index="42" data-title="Pág. 128, nº 29 (a, b, c, d)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 128, nº 29 (a, b, c, d)</strong></h2>
+        </div>
+        <span class="slide-number">42 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image zoomable-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image37.png" alt="Texto sobre Molière Pág. 128">
+        </div>
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card q-card tone-blue"><p><strong>a. ¿Con qué dos rasgos se describe la moral social de Molière? ¿En qué se basa su filosofía? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Qué personajes de Molière se citan en el texto? Identifícalos y relaciónalos con la obra a la que pertenecen. Explica los prejuicios que encarnan. </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. ¿Cuál fue la razón del éxito de Molière en la Francia de la época? Considera que uno de sus valores centrales era el «sentido común». ¿Crees que Molière supo identificarlo y concretarlo? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. ¿Qué interés tienen sus obras para el público de hoy en día? En la actualidad apreciamos enormemente la importancia de los sentimientos y las emociones. ¿Crees que este hecho nos separa de Molière y de su época? </strong></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 43: Pág. 128, nº 40 -->
+    <section class="slide" data-index="43" data-title="Pág. 128, nº 40: Aforismos de Montaigne">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 128, nº 40</strong></h2>
+        </div>
+        <span class="slide-number">43 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 12px;">
+        <div class="card burgundy" style="flex-shrink:0;">
+<p><strong>Lee estos </strong><strong><u>aforismos</u></strong><strong> de Montaigne, explica su sentido y relaciónalos con su obra y con la mentalidad de su época: </strong></p>
+</div>
+        <div class="grid-2" style="flex: 1;">
+          <div class="card tone-blue q-card">
+<p><strong>1 «Nada parece tan verdadero que no pueda parecer falso». </strong></p>
+</div>
+          <div class="card tone-amber q-card">
+<p><strong>2 «La confianza en la bondad del prójimo es una sólida prueba de la propia bondad». </strong></p>
+</div>
+          <div class="card tone-emerald q-card">
+<p><strong>3 «Los celos son, de todas las enfermedades del espíritu, aquella a la cual más cosas sirven de alimento y menos de remedio». </strong></p>
+</div>
+          <div class="card tone-purple q-card">
+<p><strong>4 «La verdadera libertad consiste en el dominio absoluto de uno mismo».</strong></p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 44: Pág. 130, nº 47 (a, b, c, d, e) -->
+    <section class="slide" data-index="44" data-title="Pág. 130, nº 47 (a, b, c, d, e)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 130, nº 47 (a, b, c, d, e)</strong></h2>
+        </div>
+        <span class="slide-number">44 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card q-card tone-blue"><p><strong>a. Tartufo se ha ganado la confianza de Orgón, por lo que frecuenta su casa. ¿Qué descubre Damis? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Cómo reacciona Tartufo ante esta acusación? ¿Qué efecto produce su respuesta en Orgón? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. Comenta el cinismo con el que Tartufo manipula a Orgón. ¿Qué efecto crees que producirá en el público? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. El hipócrita triunfa. Orgón decide casar a su hija Mariana con Tartufo. ¿Qué exige a su hijo? ¿Qué hace cuando este se niega? ¿Sospechas a quién va a donar sus bienes? </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. Comenta la construcción de los personajes, el lenguaje y el humor de la escena.</strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image38.png" alt="Fragmento Tartufo Pág. 130">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 45: 3.5 La edad de oro de la literatura inglesa: El teatro isabelino (I) -->
+    <section class="slide" data-index="45" data-title="3.5 La edad de oro de la literatura inglesa: El teatro isabelino (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">45 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.25;">
+          <div class="card blue">
+<p><strong>EL TEATRO ISABELINO</strong></p>
+<p>Dado que el Renacimiento se desarrolló en Inglaterra más tarde que en el resto de Europa, durante la primera mitad del siglo XVI predominó un <strong>teatro religioso </strong>de procedencia medieval. Junto a este teatro religioso se fueron abriendo paso un <strong>teatro cortesano</strong> -que se representaba en las universidades- y un <strong>teatro popular</strong>.</p>
+</div>
+          <div class="card burgundy">
+<p>Este último sería, a la postre, el que acabaría triunfando con un grupo de autores, a cuya cabeza se encuentra <strong><em>Shakespeare</em></strong>, creadores de lo que se conoce como <strong>teatro isabelino</strong>, que cubre las dos últimas décadas del siglo XVI y casi toda la primera mitad del XVII. La denominación se debe a que se gestó durante el reinado de <strong>Isabel I </strong>(1559-1603), aunque se extendió a los reinados de <strong>Jacobo I</strong> (1603-1625) y <strong>Carlos I </strong>(1625-1649).</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.85;">
+          <img src="presentacion_recursos/image39.jpg" alt="La dinastía Estuardo y el final de los Tudor">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 46: 3.5 La edad de oro de la literatura inglesa: El teatro isabelino (II) -->
+    <section class="slide" data-index="46" data-title="3.5 La edad de oro de la literatura inglesa: El teatro isabelino (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">46 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card gold">
+<p>El teatro popular inglés empezó a representarse en <u>escenarios improvisados</u>, como los patios de posadas, a los que acudía un público variopinto. Pero al iniciarse el ciclo isabelino ya existían locales expresamente construidos para las representaciones teatrales.</p>
+<p>Los más importantes se edificaron en las proximidades de Londres, ya que dentro de la ciudad el teatro estaba por entonces prohibido. Especialmente destacados fueron <em>The Swan </em>(El Cisne), de forma circular, y <em>The Globe </em>(El Globo), de forma hexagonal. Estas formas permitían que la mayor parte del público se distribuyera en el patio central del edificio, al aire libre, en torno del escenario que ocupaba parcialmente lo que hoy sería el patio de butacas. Las representaciones se hacían, como cabe suponer, solo en las temporadas de clima benigno.</p>
+<p>El público de estos teatros estaba integrado por gente de toda condición, pero con un predominio del <strong>estamento popular</strong>, que imponía sus gustos al margen de los preceptos clasicistas. Era un público que reclamaba <strong>diversión</strong> y <strong>emoción</strong>, y a estas exigencias se entregaron los autores.</p>
+</div>
+          <div class="card burgundy">
+<p><strong>Formalmente</strong>, se trata de un teatro que no sigue los preceptos clásicos:</p>
+<ul class="bu-diamond">
+  <li><strong>Se transgreden</strong> las controvertidas unidades de <strong>tiempo</strong>, <strong>lugar</strong> y <strong>acción</strong>.
+  </li>
+  <li><strong>Se mezclan los géneros</strong>, de manera que, en ocasiones, una situación trágica o de alta tensión dramática puede verse aliviada por la intervención cómica del <em>clown</em> (personaje cuyo papel en la escena es parecido al que desempeña el gracioso en el teatro español).
+  </li>
+  <li><strong>Se mezclan</strong>, igualmente, los personajes <strong>nobles</strong> con los <strong>plebeyos</strong>.
+  </li>
+  <li>Finalmente, en una misma obra pueden alternarse el <strong>verso</strong> y la <strong>prosa</strong>.
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image-stack" style="flex: 0.65;">
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image41.jpeg" alt="The Swan Theatre"></div>
+          <div class="pane-image zoomable-image"><img src="presentacion_recursos/image40.jpeg" alt="Teatro isabelino"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 47: 3.5 Thomas Kyd, Christopher Marlowe, Benjamin Jonson -->
+    <section class="slide" data-index="47" data-title="3.5 Kyd, Marlowe y Jonson">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">47 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.42;">
+          <div class="card burgundy">
+<p><strong>THOMAS KYD, CHRISTOPHER MARLOWE, BENJAMIN JONSON</strong></p>
+<ul class="bu-diamond">
+  <li><strong>Thomas Kyd (1558-1594)</strong>, uno de los primeros representantes del teatro isabelino. Autor de dramas sangrientos en los que la venganza juega un papel importante, se le recuerda por su obra <em>Tragedia española </em>(1594), que, según la crítica, pudo ser la base para que Shakespeare escribiera su Hamlet.
+  </li>
+</ul>
+</div>
+          <div class="card blue">
+<ul class="bu-diamond">
+  <li><strong>Christopher Marlowe (1564-1593)</strong>, en cuya biografía se encuentran muchos puntos oscuros y misteriosos (episodios de espionaje, muerte violenta no del todo esclarecida...), fue quizá el mejor dotado de los dramaturgos anteriores a Shakespeare. Destaca, sobre todo, por su <em>Tragedia del doctor Fausto</em> (1588), primera versión teatral de la leyenda alemana que siglos después elevaría Goethe a la categoría de mito. Siguieron a esta obra <em>El judío de Malta </em>(1589-90) y <em>Eduardo II </em>(1591), que sirvieron a Shakespeare para la composición de <em>El mercader de Venecia</em> y <em>Ricardo III</em>.
+  </li>
+</ul>
+</div>
+          <div class="card gold">
+<ul class="bu-diamond">
+  <li><strong>Benjamin Jonson (1572-1637) </strong>fue amigo de Shakespeare y actor como él. Alternó la poesía y el teatro. Como poeta fue laureado en una fecha imprecisa, y como dramaturgo reinó en los teatros durante más de veinte años, sobre todo como autor de comedias. A este género pertenece su obra más destacada, <em>Volpone o el zorro </em>(1606), sobre las intrigas de un rico caprichoso, una sátira mordaz contra la avaricia, considerada una obra maestra del humor.
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.62;">
+          <img src="presentacion_recursos/image42.png" alt="Christopher Marlowe">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 48: ACTIVIDADES -->
+    <section class="slide" data-index="48" data-title="Actividades (Pág. 136)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">48 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 136, nº 48 (a, b, c, d, e)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 49: Pág. 136, nº 48 (a, b, c, d, e) -->
+    <section class="slide" data-index="49" data-title="Pág. 136, nº 48 (a, b, c, d, e)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 136, nº 48 (a, b, c, d, e)</strong></h2>
+        </div>
+        <span class="slide-number">49 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.22;">
+          <div class="card q-card tone-blue"><p><strong>a. ¿Qué dificultades tuvo que superar Inglaterra para consolidar su conciencia nacional? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Qué cambios se produjeron en el país durante el reinado de Isabel I? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. ¿Cuál era la población de Londres a finales del siglo XVI? París doblaba esta cifra, mientras que Roma apenas llegaba a la mitad. ¿Podrías relacionar este hecho con el desarrollo del teatro inglés y francés frente al italiano? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. ¿Qué tradiciones teatrales precedieron al teatro isabelino? ¿Cuál era su origen? ¿Qué novedad trajo consigo el siglo XVI? </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. ¿Cuál fue, sin embargo, el factor decisivo para que se produjera el despegue del teatro inglés?</strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.88;">
+          <img src="presentacion_recursos/image43.png" alt="Texto Teatro Isabelino Pág. 136">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 50: 3.5 Shakespeare (1564 - 1616) -->
+    <section class="slide" data-index="50" data-title="3.5 Shakespeare (1564 – 1616)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">50 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.4;">
+          <div class="card burgundy">
+<p><strong>SHAKESPEARE  (1564 – 1616) </strong></p>
+<p>De la vida de William Shakespeare, uno de los más grandes genios que ha dado la literatura universal, no son muchos los datos seguros que se poseen. Nació en <strong>Stratford-upon-Avon</strong> en 1564, hijo de un comerciante acomodado. Poco se sabe de su formación académica; lo más probable es que realizara estudios primarios en la escuela de su ciudad y que la abandonara pronto para trabajar como aprendiz de algún oficio.</p>
+</div>
+          <div class="card blue">
+<p>Durante años, su pista se esfuma y reaparece en <strong>Londres</strong> en 1592, cuando empezó a ser conocido como <strong>actor</strong> y <strong>autor</strong>. Formó parte de varias compañías teatrales, incluida la más importante de ellas, protegida por el Lord Chamberlain. La protección de tan importante mecenas le procuró una gran notoriedad. Sus éxitos se sucedieron y pronto se vio con una situación económica desahogada, hasta el punto de que en 1599 ya había creado su propia compañía, con la que se instaló en el teatro <em>The Globe</em>. Durante estos primeros años en Londres, se dedicó especialmente al <strong>drama histórico</strong> y a la <strong>comedia</strong>, en ocasiones refundiendo obras de otros autores o tomando como punto de partida obras de otras épocas y otras literaturas.</p>
+</div>
+          <div class="card gold">
+<p>El <strong>cambio de siglo </strong>fue un punto de inflexión en la producción de Shakespeare. Su obra abandonó el tono cómico y se adentró en terrenos sombríos y de una profundidad sobrecogedora. Pasados unos años volvió a dar un giro en su carrera y regresó a la comedia. Finalmente, <strong>murió el 23 de abril de 1616</strong>.</p>
+</div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.65;">
+          <img src="presentacion_recursos/image44.jpeg" alt="The Globe Theatre">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 51: 3.5 Vídeo Shakespeare in love -->
+    <section class="slide" data-index="51" data-title="3.5 Shakespeare in Love (Vídeo)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">51 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="video-frame" style="flex: 1; height: 100%;">
+          <video controls preload="metadata" poster="presentacion_recursos/image45.png">
+            <source src="presentacion_recursos/video4_shakespeare_in_love.mp4" type="video/mp4">
+            <source src="3.4 Shakespeare in love.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 52: 3.5 Características de la obra de Shakespeare -->
+    <section class="slide" data-index="52" data-title="3.5 Características de la obra de Shakespeare">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">52 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image" style="flex: 0.55;">
+          <img src="presentacion_recursos/image46.jpeg" alt="William Shakespeare">
+        </div>
+        <div class="pane-text" style="flex: 1.45;">
+          <div class="card blue">
+<p>Sus obras se <strong>caracterizan</strong> principalmente por:</p>
+<ul class="bu-diamond">
+  <li>Su <strong>estilo</strong>, asombrosamente rico. El extraordinario dominio de la lengua inglesa que el autor muestra le permite abarcar con maestría desde la expresión más exquisita y sublime hasta el gracejo del habla popular.
+  </li>
+  <li>Tan potente riqueza estilística se puso al servicio de una <strong>aguda capacidad para pulsar los resortes de la emoción</strong>, de manera que el espectador -o el lector- no puede quedar indiferente ante las palabras de sus logrados personajes.
+  </li>
+  <li>Elevó a sus criaturas a la categoría de <strong>personajes universales</strong>, al encarnar las pasiones más arrebatadoras -amor, celos, envidia, ambición…-, pero sin someterlos al corsé deshumanizador de los prototipos; muy al contrario, resultan extraordinariamente vivos.
+  </li>
+</ul>
+</div>
+          <div class="card burgundy">
+<ul class="bu-diamond">
+  <li>Particularmente valiosa es su concepción del <strong>personaje cómico </strong>como contrapunto de los personajes más graves. Si en otros autores este personaje sirve para poner la nota cómica y aliviar la tensión de las situaciones más dramáticas, en Shakespeare adquiere otra dimensión: sus intervenciones, sin perder el tono irónico, alcanzan en ocasiones auténtica hondura filosófica, de modo que el humor es con frecuencia más amargo que burlesco y la tensión dramática no se aligera, sino que se refuerza.
+  </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 53: 3.5 Shakespeare: Las comedias (I) -->
+    <section class="slide" data-index="53" data-title="3.5 Shakespeare: Las comedias (I)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">53 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card blue">
+<p><strong>LAS COMEDIAS</strong></p>
+<p>El enredo de <strong>raíz clásica </strong>-Plauto, Terencio...- e <strong>italiana</strong> fueron el punto de partida para la elaboración de las comedias de Shakespeare.</p>
+<p>Los <strong>elementos</strong> más característicos del enredo (los malentendidos, el disfraz, las intrigas de giros inesperados, etc.) conforman la base de estas obras. En ellas, el autor estudia <strong>todas las clases sociales</strong>, por lo que constituyen un buen reflejo de la sociedad. Pero, una vez más, <strong>sus personajes están lejos de ser meros estereotipos</strong>: son criaturas de carne y hueso perfectamente individualizadas. Sin pretender ser aleccionadoras, de sus comedias se infieren los peligros de las actitudes erradas, aunque siempre se resuelven felizmente.</p>
+<p>A continuación, veremos algunas de las características de las comedias de Shakespeare:</p>
+</div>
+          <div class="card gold">
+<ul class="bu-diamond">
+  <li>En sus comedias, los personajes poseen la misma <strong>hondura psicológica </strong>que podemos encontrar, por ejemplo, en <em>Hamlet</em>. Trata <strong>temas profundos</strong>, que no son un mero entretenimiento. Cuida el <strong>lenguaje</strong> hasta límites insospechados, combinando estrofas y registros lingüísticos para caracterizar a sus personajes y recurriendo a la canción no como mero adorno añadido, tan típico en las comedias coetáneas, sino como parte del argumento y, en ocasiones, clave para desvelar la trama.
+  </li>
+  <li>Shakespeare, además, recurrió a elementos dramáticos que aumentaban la tensión argumental (y que al solucionarse favorablemente conseguían que el final resultara aún más feliz) como la presencia de <strong>personajes tiránicos, coléricos y/o huraños </strong>(Leonato en <em>Mucho ruido y pocas nueces, por ejemplo</em>).
+  </li>
+  <li>Los <strong>elementos folclóricos </strong>acercaban la obra al público pero, al mismo tiempo, lo sorprendían porque no los utiliza como cabe esperar (el mundo de las hadas, tan popular en la tradición celta y británica, en <strong><em>El Sueño de una Noche de Verano</em></strong>).
+  </li>
+</ul>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 54: 3.5 Shakespeare: Las comedias (II) -->
+    <section class="slide" data-index="54" data-title="3.5 Shakespeare: Las comedias (II)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">54 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card burgundy">
+<ul class="bu-diamond">
+  <li>Casi todas las comedias transcurrían en <strong>lugares exóticos </strong>para el público londinense (salvo <em>Las alegres comadres de Windsor</em>).
+  </li>
+  <li>Es común que recurriera a problemas de <strong>identidad</strong> (gemelos; el uso del disfraz; travestismo, sobre todo para los personajes femeninos que optan por vestirse de hombre para sobrevivir en el mundo masculino o para conseguir objetivos vetados a las mujeres en la época, como Viola en <em>Noche de Reyes</em>)
+  </li>
+  <li>Aparece el personaje del <strong>bufón</strong> o el payaso como elemento subversivo e irónico pero, sobre todo, libre para decir lo que otros no se atreven; y el <strong>bosque</strong> y la naturaleza como lugar donde las leyes se difuminan o llegan a desaparecer (<em>Como gustéis</em>).
+  </li>
+  <li>Los elementos románticos, festivos y el final feliz sugieren un ritual de autoconocimiento y renacimiento de los protagonistas. Siempre aparecen elementos de <strong>honda reflexión </strong>(incoherencias éticas de las normas sociales, conflictos de género y clase, mucho más marcados en las llamadas “comedias de conflicto”) que van más allá de un mero fin cómico.
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.72;">
+          <img src="presentacion_recursos/image47.png" alt="Comedias de Shakespeare">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 55: 3.5 El sueño de una noche de verano (1598) -->
+    <section class="slide" data-index="55" data-title="3.5 El sueño de una noche de verano (1598)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">55 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.35;">
+          <div class="card blue">
+<p><strong><u>El sueño de una noche de verano (1598)</u></strong></p>
+<p>Se trata de una de las comedias más sorprendentes de Shakespeare. La razón principal es el <strong>despliegue</strong> y <strong>presencia dominante de elementos fantásticos, mágicos</strong>.</p>
+<p>La acción sucede en la Atenas antigua, clásica, la de los mitos y la alegría de vivir. El principal personaje de ese mundo fantástico es el famoso <strong>Puck</strong>, un duende burlón, bromista, bueno, pero con cierto toque malicioso. Puck, por orden de <strong>Oberón</strong>, rey de las hadas, intentará con un filtro mágico que <strong>Helena</strong> y <strong>Demetrio</strong> se enamoren. Pero Puck se equivoca, lo que lleva a una serie de confusiones y conflictos de amor. Para terminar de arreglarlo, el duende vierte en el oído de la reina de las hadas, <strong>Titania</strong>, mientras duerme, otro filtro mágico que le hará enamorarse de la primera persona que vea al despertar.</p>
+</div>
+          <div class="card gold">
+<p>Pero a quien encuentra al despertar la elegante y refinada Titania no es a su amado Oberón, el rey, sino a un rústico artesano, <strong>Lanzadera</strong>, al que el zumbón duende le transformará la cabeza en una de asno. Pero Titania seguirá enamorada de él. El marido de Titania, Oberón, no soportará más la situación y mandará a Puck que deshaga los entuertos, que arregle la situación para que, de nuevo reine el orden en el mundo de las hadas. Y el sortilegio de Puck surtirá efecto y cambiará el desorden en orden, para que todo salga y termine bien.</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.72;">
+          <img src="presentacion_recursos/image48.jpeg" alt="El sueño de una noche de verano">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 56 (Unificada 56 y 57): 3.5 Fragmento Asignación de papeles de los artesanos -->
+    <section class="slide" data-index="56" data-joint-modal="true" data-title="3.5 El sueño de una noche de verano: Fragmento">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">56 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 6px;">
+        <div class="card burgundy compact-dialogue-intro" style="flex-shrink:0;">
+<p>Fragmento <strong><em>Asignación de papeles de los artesanos (Acto I, Escena 2)</em></strong>.</p>
+<p>Es una escena divertidísima donde vemos la dinámica del grupo de trabajadores humildes intentando montar una obra de teatro serio. Destaca Bottom, quien con su enorme ego quiere interpretar todos los personajes.</p>
+</div>
+        <div style="flex: 1; min-height: 0; display: flex; gap: clamp(8px, 1.1vw, 14px); align-items: stretch;">
+          <div class="grid-2" style="flex: 1.72;">
+            <div class="card blue compact-dialogue">
+<p><strong>QUINCE</strong>: ¿Está aquí toda nuestra compañía?</p>
+<p><strong>BOTTOM</strong>: Será mejor que los llaméis uno por uno, hombre por hombre, según la lista.</p>
+<p><strong>QUINCE</strong>: Aquí está el papel con los nombres de todos los hombres que se consideran aptos para representar nuestro intermedio ante el Duque en su noche de bodas.</p>
+<p><strong>BOTTOM</strong>: Primero, buen Peter Quince, di de qué trata la obra, luego lee los nombres de los actores y así llega al punto.</p>
+<p><strong>QUINCE</strong>: Nuestra obra es: "<em>La muy lamentable comedia y la muy cruel muerte de Píramo y Tisbe</em>".</p>
+<p><strong>BOTTOM</strong>: ¡Una obra muy buena, os lo aseguro, y divertida! Ahora, llama a tus actores por la lista.</p>
+<p><strong>QUINCE</strong>: Responded a medida que os llame. Nick Bottom, el tejedor.</p>
+<p><strong>BOTTOM</strong>: ¡Listo! Nombra mi parte y continúa.</p>
+<p><strong>QUINCE</strong>: Tú, Nick Bottom, estás apuntado para Píramo.</p>
+<p><strong>BOTTOM</strong>: ¿Qué es Píramo? ¿Un amante o un tirano?</p>
+</div>
+            <div class="card gold compact-dialogue">
+<p><strong>QUINCE</strong>: Un amante, que se mata muy galantemente por amor.</p>
+<p><strong>BOTTOM</strong>: Eso requerirá algunas lágrimas en la interpretación. Si lo hago yo, ¡que el público cuide sus ojos! Moveré tormentas... Ahora nombra al resto.</p>
+<p><strong>QUINCE</strong>: Francis Flute, el remendón de fuelles.</p>
+<p><strong>FLUTE</strong>: Aquí, Peter Quince.</p>
+<p><strong>QUINCE</strong>: Flute, tú debes tomar el papel de Tisbe.</p>
+<p><strong>FLUTE</strong>: ¿Qué es Tisbe? ¿Un caballero andante?</p>
+<p><strong>QUINCE</strong>: Es la dama que Píramo debe amar.</p>
+<p><strong>FLUTE</strong>: ¡No, por mi fe! No me hagáis hacer de mujer; me está saliendo la barba.</p>
+<p><strong>QUINCE</strong>: Eso no importa; lo harás con máscara y hablarás tan finito como puedas.</p>
+<p><strong>BOTTOM</strong>: ¡Si puedo esconder la cara, dejadme hacer de Tisbe también! Hablaré con una vocecita monstruosamente pequeña: "¡Ah, Píramo, amante mío!".</p>
+<p><strong>QUINCE</strong>: No, tú harás de Píramo; y tú, Flute, de Tisbe.</p>
+</div>
+          </div>
+          <div class="pane-image" style="flex: 0.45;">
+            <img src="presentacion_recursos/image49.jpeg" alt="Artesanos en El sueño de una noche de verano">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 57 (antes 58): 3.5 Shakespeare: Las grandes tragedias -->
+    <section class="slide" data-index="57" data-title="3.5 Shakespeare: Las grandes tragedias">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">57 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.38;">
+          <div class="card burgundy">
+<p><strong>LAS GRANDES TRAGEDIAS</strong></p>
+<p>Shakespeare escribió <strong>veinte tragedias</strong>. Es en este género donde el genio de Shakespeare se muestra con mayor brillantez y el que le ha granjeado la máxima gloria. Son innumerables las versiones y adaptaciones que sus grandes tragedias han tenido en los escenarios, y en el último siglo han servido además como la base para numerosas películas.</p>
+<p>Shakespeare escribió unas tragedias magníficas, grandiosas, universales. Apelan a sentimientos y pasiones que todos podemos haber vivido, remueven nuestras conciencias porque, en mayor o menor medida, nos sentimos identificados con los personajes.</p>
+<p>En sus tragedias, suele <strong>combinar el verso y la prosa</strong>, y en su lenguaje caben desde la expresión más exquisita hasta el registro más familiar, plagado de exabruptos y crudeza.</p>
+</div>
+          <div class="card blue">
+<p><strong>Características de las tragedias de Shakespeare</strong></p>
+<ul class="bu-dot">
+  <li>Se aparta de los cánones clásicos de unidad de tiempo, espacio y acción.
+  </li>
+  <li>No hay intervenciones sobrenaturales (salvo las brujas en Macbeth).
+  </li>
+  <li>Se centra en los actos humanos, que son los que propician la tragedia.
+  </li>
+  <li>Mantiene siempre la tensión (incluso cuando se produce el reconocimiento no siempre hay alivio ni redención, como pasa con Cordelia, en el <em>Rey Lear</em>).
+  </li>
+  <li>Las tragedias tardías responden a la inquietud política tras el reinado de Isabel I. Así, Lear va haciéndose consciente de su fragilidad y su falibilidad, en clara referencia al nuevo rey Jacobo I y su doctrina de los derechos divinos del rey.
+  </li>
+</ul>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.68;">
+          <img src="presentacion_recursos/image50.png" alt="Tragedias de Shakespeare">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 58 (antes 59): 3.5 Romeo y Julieta (1597) -->
+    <section class="slide" data-index="58" data-title="3.5 Romeo y Julieta (1597)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">58 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.05;">
+          <div class="card burgundy">
+<p><strong><u>Romeo y Julieta (1597) </u></strong></p>
+<p>Parte de una historia italiana escrita en el primer cuarto del siglo XVI, y se desarrolla en la <strong>Verona</strong> (Italia) de dos siglos antes. Fue una de sus obras de <strong>mayor éxito</strong>. Es la tragedia del amor más puro, noble y juvenil.</p>
+</div>
+          <div class="card gold">
+<p>Romeo y Julieta son los respectivos hijos de dos familias irreconciliablemente enemistadas, los <strong>Montesco</strong> y los <strong>Capuleto</strong>. Romeo se enamora de Julieta y la joven le entrega candorosamente su corazón. Frente a la pasión amorosa de los jóvenes se erige otra pasión de fuerza incontenible, la del odio entre las dos familias. Romeo y Julieta saltan por encima de las barreras sociales y de sangre al jurarse amor eterno, sucumben bajo el peso de las convenciones. La obra está traspasada por la presencia del odio y la venganza, de modo que los jóvenes son aniquilados por un destino inexorable. No obstante, en el espectador permanece la impresión de que el amor ha traspasado la frontera de la muerte.</p>
+</div>
+        </div>
+        <div class="pane-video" style="flex: 1.05;">
+          <div class="video-frame">
+            <video controls preload="metadata" poster="presentacion_recursos/image51.png">
+              <source src="presentacion_recursos/video5_romeo_y_julieta.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 59 (antes 60): 3.5 Otelo (1603) -->
+    <section class="slide" data-index="59" data-title="3.5 Otelo (1603)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">59 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image zoomable-image" style="flex: 0.88;">
+          <img src="presentacion_recursos/image52.png" alt="Fragmento Otelo">
+        </div>
+        <div class="pane-text" style="flex: 1.22;">
+          <div class="card blue">
+<p><strong><u>Otelo (1603) </u></strong></p>
+<p>Otelo, el moro de Venecia: fue escrita probablemente en 1603 y estrenada el año siguiente. Como la anterior, está basada en una obra italiana. Desarrolla el tema del <strong>poder destructivo de los celos</strong>. Aunque se la suela calificar como una tragedia de celos, en Otelo la <strong>conspiración</strong> y la <strong>venganza</strong> son realmente los elementos desencadenantes.</p>
+</div>
+          <div class="card burgundy">
+<p><strong>Argumento</strong></p>
+<p><strong>Otelo</strong>, recién casado con <strong>Desdémona</strong>, es enviado a Chipre como nuevo embajador veneciano. Hasta allí se traslada con su esposa y algunos oficiales a su cargo. Entre ellos está <strong>Yago</strong>, que siembra en Otelo la sospecha de la infidelidad de su esposa, inocente y ajena a las manipulaciones que contra ellos se traman. El protagonista, víctima de unos celos irrefrenables y de la confianza depositada en Yago, presta oídos a las acusaciones contra Desdémona y se desencadena la tragedia. Muerta Desdémona a manos de su esposo, se descubre la oscura trama y Otelo se quita la vida. Frente a la compasión que despiertan Desdémona y, en cierta medida, Otelo, destaca la maldad del personaje de Yago, que ha pasado a la historia como símbolo de la manipulación diabólica.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 60: ACTIVIDADES -->
+    <section class="slide" data-index="60" data-title="Actividades (Pág. 139, nº 66)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">60 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 139, nº 66 (a, b, c)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 61 (antes 62): Pág. 139, nº 66 (a, b, c) -->
+    <section class="slide" data-index="61" data-title="Pág. 139, nº 66 (a, b, c)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 139, nº 66 (a, b, c)</strong></h2>
+        </div>
+        <span class="slide-number">61 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-image zoomable-image" style="flex: 0.92;">
+          <img src="presentacion_recursos/image53.png" alt="Fragmento Romeo y Julieta Pág. 139">
+        </div>
+        <div class="pane-text" style="flex: 1.18;">
+          <div class="card q-card tone-blue"><p><strong>a. Comenta la metáfora con que se describe la belleza de Julieta. ¿Qué alegoría se desarrolla? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Qué propone Julieta a Romeo? ¿Por qué? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. Explica la concepción del amor que se desprende de la respuesta de Romeo. </strong></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 62 (antes 63): 3.5 El rey Lear (1604 – 1605) -->
+    <section class="slide" data-index="62" data-title="3.5 El rey Lear (1604 – 1605)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">62 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.32;">
+          <div class="card blue">
+<p><strong><u>El rey Lear (1604 – 1605)</u></strong></p>
+<p>Shakespeare recurrió a una antigua leyenda para escribirla. Estamos probablemente ante la tragedia de mayor <strong>alcance moral</strong>, ya que en ella se dirimen, en un sentido amplio, las grandes fuerzas que mueven el mundo: el <strong>Bien</strong> y el <strong>Mal</strong>. Este tema se concreta en la historia del <strong>rey Lear</strong>, el rey que, en el reparto de su reino, comete una evidente injusticia con <strong>Cordelia</strong>, la menor de sus tres hijas.</p>
+</div>
+          <div class="card burgundy">
+<p>En el transcurso de la obra somos testigos de la ingratitud de las dos hermanas favorecidas y de la abnegada fidelidad de la perjudicada, que, a pesar de su desprendimiento y generosidad desmedidos, es incapaz de evitar el trágico desenlace que acabará destruyendo a su padre. Este viene dado por su propia injusticia inicial y por el terrible abandono al que lo abocan las hijas ingratas, movidas por la <strong>ambición</strong>.  El progresivo deterioro del rey, que culmina en la <strong>locura</strong>, se produce en el ambiente espeluznante de una naturaleza desoladora, que parece acompañar con la fuerza de sus elementos la desgracia del anciano. Durante la obra, el conflicto entre el Bien y el Mal se manifiesta en la oposición entre fidelidad e ingratitud, amor y odio, lucidez y locura. Especial interés tiene el personaje del <strong>bufón</strong>, que, desde su posición, es capaz de manifestar las más profundas verdades, con un lenguaje extraño, rayano en el surrealismo</p>
+</div>
+        </div>
+        <div class="pane-image" style="flex: 0.78;">
+          <img src="presentacion_recursos/image54.png" alt="El rey Lear y el bufón en la tormenta">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 63 (antes 64): 3.5 Macbeth (1606) -->
+    <section class="slide" data-index="63" data-title="3.5 Macbeth (1606)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">63 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text full-width">
+          <div class="card burgundy">
+<p><strong><u>Macbeth (1606)</u></strong></p>
+<p>Macbeth toma como punto de partida un suceso del siglo XI de la historia de Escocia. Trata como tema principal la <strong>ambición desmedida y sus consecuencias nefastas</strong>.</p>
+</div>
+          <div class="card blue">
+<p><strong>Macbeth</strong>, servidor y primo del rey Duncan, concibe a partir de unas profecías la idea de llegar a reinar algún día. Instigado por su esposa, <strong>Lady Macbeth</strong>, asesina al rey, a quien debe lealtad y gratitud, y comienza una espiral de horrendos crímenes para asegurar que nada se opondrá a sus ambiciosos planes. Ligados al tema de la ambición, aparecen de este modo los temas de la <strong>traición</strong> y la <strong>deslealtad</strong>.</p>
+</div>
+          <div class="card gold">
+<p>Los planes de Macbeth se truncan cuando malinterpreta nuevas profecías, y es aniquilado por personajes sedientos de venganza y justicia. Previamente, Lady Macbeth ha sido destruida por sus propios remordimientos. Junto al tono general de horror y espanto, destaca la presencia de lo fantástico y lo sobrenatural.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 64 (antes 65): 3.5 Hamlet (1601 - 1606) -->
+    <section class="slide" data-index="64" data-joint-modal="true" data-title="3.5 Hamlet (1601 - 1606)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">64 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card burgundy">
+<p><strong><u>Hamlet (1601 - 1606)</u></strong></p>
+<p>Se trata de una de las grandes tragedias de Shakespeare y, probablemente, <u>la obra de teatro más representada</u> de todos los tiempos. La historia se basa en una vieja leyenda escandinava, recogida en el siglo XII bajo el título de <strong>Amleth</strong>. La obra trata como tema principal la <strong>duda paralizadora </strong>que suscita en el ser humano el <strong>debate entre la acción y la reflexión</strong>.</p>
+<p>El joven <strong>Hamlet</strong>, obligado por amor filial y por honor a vengar la muerte de su padre, el rey de Dinamarca, a manos de su tío, usurpador del trono, se siente incapaz de actuar, paralizado por el peso de tamaña responsabilidad. En este sentido, la obra se convierte en una profunda reflexión sobre las implicaciones morales del asesinato.</p>
+<p>Junto a este tema se tocan otros como el de la <strong>venganza</strong>, que afecta tanto a Hamlet como a Laertes; la <strong>locura</strong>, que en el protagonista es fingida y en Ofelia, pretendida un tiempo por Hamlet, es real; el <strong>incesto</strong>, protagonizado por la reina Gertrudis al desposarse con su cuñado, el asesino del rey difunto, a los dos meses de su viudez…Pero la <strong>riqueza temática </strong>de Hamlet abarca un amplio campo en el que se exploran también la traición, la usurpación del poder, el azar, etc.</p>
+</div>
+          <div class="card blue">
+<p>La obra consta de <strong>cinco actos </strong>de longitud similar, divididos en escenas de extensión desigual. La galería de <strong>personajes</strong> es enormemente variada. El protagonista de la obra es, naturalmente, el joven Hamlet, que experimenta múltiples pasiones: temor, pasión, amor, odio…, aunque por encima de cualquiera se encuentran la duda y la falta de resolución. Su antagonista es el <strong>rey Claudio</strong>, que representa la ambición y la maquinación perversa para hacerse con el poder de manera ilegítima.</p>
+<p>Los demás personajes representan igualmente defectos y valores muy diversos: el sentimiento de culpa y el amor maternal de la reina Gertrudis; la petulancia no exenta de estupidez del consejero Polonio; la inocencia de la obediente Ofelia, pretendida, abandonada y, por último huérfana; el amor filial y el sentido del honor de Laertes; la traición encarnada por Rosencrantz y Guildenstern, frente a la lealtad de Horacio; la sabiduría popular que representan los sepultureros; el ardor guerrero de Fortinbrás, etc.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 65 (antes 66): 3.5 Hamlet: Argumento -->
+    <section class="slide" data-index="65" data-joint-modal="true" data-title="3.5 Hamlet: Argumento">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">65 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card blue">
+<p><strong>Argumento</strong></p>
+<p>La historia comienza cuando el <strong>príncipe Hamlet </strong>se entera de que su padre, el rey de Dinamarca, ha muerto repentinamente. Su tío <strong>Claudio</strong> asume el trono y se casa con <strong>Gertrudis</strong>, la madre de Hamlet. Una noche, el fantasma del rey muerto se aparece a Hamlet, le revela que Claudio lo asesinó y le pide venganza. Hamlet jura obedecer, pero su carácter melancólico y poco decidido le hace retrasar la venganza. Mientras tanto, decide fingirse loco para no levantar sospechas de que es una amenaza para el rey.</p>
+<p>Además, Hamlet rechaza a <strong>Ofelia</strong> y la trata con crueldad a pesar de que antes la había cortejado. Cuando llega una compañía de actores al castillo, Hamlet les pide representar una obra que reproduce el asesinato de su padre. Al ver la reacción de su tío Claudio durante la obra, Hamlet confirma su culpabilidad. Más tarde, mientras le reprocha a su madre haber sido cómplice del crimen, Hamlet supone que el rey Claudio está escuchando detrás de una cortina, saca la espada y la atraviesa, pero mata en su lugar a <strong>Polonio</strong>, padre de Ofelia.</p>
+</div>
+          <div class="card gold">
+<p>Claudio envía a Hamlet a Inglaterra, supuestamente por su seguridad, pero en realidad con órdenes secretas de que lo ejecuten allí. Hamlet descubre el plan y logra regresar a Dinamarca. <strong>Laertes</strong>, hijo de Polonio y hermano de Ofelia, enfurecido, se presenta para vengar la muerte de su padre.</p>
+<p>El rey Claudio y Laertes organizan un plan: Laertes peleará contra Hamlet con una espada con la punta envenenada para así tener más posibilidades de matarlo. En caso de que falle, Claudio le ofrecerá a Hamlet una copa de vino con veneno. En ese momento, llega la reina Gertrudis para informar de que Ofelia se ha ahogado en un río, sembrando la duda de que podría haberse suicidado.</p>
+<p>Durante el duelo, Hamlet es herido con la espada, pero sigue luchando y, en la confusión, Laertes también resulta herido con la misma arma. Gertrudis bebe accidentalmente el vino envenenado y muere. Laertes, antes de morir, revela el complot a Hamlet. En sus últimos momentos, Hamlet mata al rey Claudio, haciéndole beber su propio veneno. Hamlet muere en brazos de su amigo <strong>Horacio</strong>, al que le pide que cuente su historia.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 66 (antes 67): 3.5 Shakespeare en el cine -->
+    <section class="slide" data-index="66" data-title="3.5 Shakespeare en el cine (Vídeo)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>3.5 La edad de oro de la literatura inglesa</strong></h2>
+        </div>
+        <span class="slide-number">66 / 69</span>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card burgundy" style="flex-shrink:0; text-align:center;">
+<p><strong><u>Shakespeare en el cine</u></strong></p>
+</div>
+        <div class="video-frame" style="flex: 1; min-height: 0;">
+          <video controls preload="metadata" poster="presentacion_recursos/image55.png">
+            <source src="presentacion_recursos/video6_shakespeare_cine.mp4" type="video/mp4">
+            <source src="3.5 Shakespeare en el cine.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 67: ACTIVIDADES -->
+    <section class="slide" data-index="67" data-title="Actividades (Págs. 138 y 139)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>ACTIVIDADES</strong></h2>
+        </div>
+        <span class="slide-number">67 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="activity-container">
+          <div class="activity-img-box">
+            <img src="presentacion_recursos/image15.png" alt="Actividades">
+          </div>
+          <div class="activity-info-box">
+            <div class="activity-task">
+              <ul class="bu-hand">
+  <li><strong>Pág. 138, nº 65 (a, b, c, d, e, f)</strong></li>
+  <li><strong> Pág. 139, nº 68 (a, b, c, d)</strong></li>
+</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 68 (antes 69): Pág. 138, nº 65 (a, b, c, d, e, f) -->
+    <section class="slide" data-index="68" data-title="Pág. 138, nº 65 (a, b, c, d, e, f)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong>Pág. 138, nº 65 (a, b, c, d, e, f)</strong></h2>
+        </div>
+        <span class="slide-number">68 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.18;">
+          <div class="card q-card tone-blue"><p><strong>a. El de Hamlet es el monólogo más famoso de la historia. ¿Con qué palabras comienza? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. Sigue una pregunta. ¿Qué se plantea Hamlet? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. ¿Por qué Hamlet desea la muerte? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. ¿Con qué la compara? </strong></p></div>
+<div class="card q-card tone-rose"><p><strong>e. Siguen dos larguísimas oraciones interrogativas. Localízalas. ¿Cómo se responden? </strong></p></div>
+<div class="card q-card tone-teal"><p><strong>f. Comenta la idea de la vida que transmite la escena y relaciónala con Shakespeare y su época. </strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.92;">
+          <img src="presentacion_recursos/image56.png" alt="Monólogo de Hamlet Pág. 138">
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 69 (antes 70): Pág. 139, nº 68 (a, b, c, d) -->
+    <section class="slide" data-index="69" data-title="Pág. 139, nº 68 (a, b, c, d)">
+      <div class="slide-header">
+        <div class="header-left">
+          <h2 class="slide-title"><strong> Pág. 139, nº 68 (a, b, c, d)</strong></h2>
+        </div>
+        <span class="slide-number">69 / 69</span>
+      </div>
+      <div class="slide-body">
+        <div class="pane-text" style="flex: 1.15;">
+          <div class="card q-card tone-blue"><p><strong>a. Otelo ha entrado en la cámara donde duerme Desdémona y pronuncia unas famosas palabras: «Tal es la causa». ¿A qué se refiere? </strong></p></div>
+<div class="card q-card tone-amber"><p><strong>b. ¿Qué emociones experimenta su corazón? </strong></p></div>
+<div class="card q-card tone-emerald"><p><strong>c. La vida se compara con una llama. ¿Qué reflexión sugiere a Otelo? </strong></p></div>
+<div class="card q-card tone-purple"><p><strong>d. Por un momento vacila en su venganza. ¿Por qué? ¿Qué le mueve a llevarla a cabo finalmente? </strong></p></div>
+        </div>
+        <div class="pane-image zoomable-image" style="flex: 0.95;">
+          <img src="presentacion_recursos/image57.png" alt="Fragmento Otelo Pág. 139">
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- BARRA INFERIOR DE CONTROLES -->
+  <div class="bottom-bar">
+    <div class="progress-track">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn" id="prevBtn" onclick="prevSlide()" title="Anterior (Flecha Izquierda)">&#8592;</button>
+      <span class="indicator" id="slideIndicator">1 / 69</span>
+      <button class="nav-btn" id="nextBtn" onclick="nextSlide()" title="Siguiente (Flecha Derecha)">&#8594;</button>
+    </div>
+    <div class="aux-controls">
+      <button class="aux-btn" onclick="goToSlide(1)" title="Ir a Contenidos">📋 Contenidos</button>
+      <button class="aux-btn" onclick="toggleDrawer()" title="Índice de diapositivas (M)">🗂️ Índice</button>
+      <button class="aux-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">⛶ Pantalla completa</button>
+    </div>
+  </div>
+
+  <!-- MODAL DE ÍNDICE -->
+  <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) toggleDrawer()">
+    <div class="index-drawer">
+      <div class="drawer-header">
+        <h3>TEMA 3: RENACIMIENTO Y CLASICISMO — ÍNDICE</h3>
+        <button class="drawer-close" onclick="toggleDrawer()">&times;</button>
+      </div>
+      <div class="drawer-body" id="drawerBody"></div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AMPLIACIÓN DE TARJETAS DE TEXTO -->
+  <div class="card-modal-overlay" id="cardModalOverlay" onclick="closeCardModal(event)">
+    <div class="card-modal-container" id="cardModalContainer">
+      <button class="card-modal-close" onclick="closeCardModal()" title="Cerrar (Esc)">&times;</button>
+      <div class="card-modal-content" id="cardModalContent"></div>
+      <div class="card-modal-footer">Haz clic fuera de la tarjeta o pulsa Esc para volver a la diapositiva</div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AMPLIACIÓN DE IMÁGENES -->
+  <div class="img-modal-overlay" id="imgModalOverlay" onclick="closeImgModal(event)">
+    <button class="img-modal-close" onclick="closeImgModal()" title="Cerrar (Esc)">&times;</button>
+    <div class="img-modal-wrapper">
+      <img id="imgModalTarget" src="" alt="Imagen ampliada">
+    </div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressBar = document.getElementById('progressBar');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const drawerBody = document.getElementById('drawerBody');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    slides.forEach((slide, idx) => {
+      const item = document.createElement('div');
+      item.className = 'drawer-item';
+      const num = idx + 1;
+      const title = slide.dataset.title || 'Diapositiva ' + num;
+      const numLabel = num < 10 ? '0' + num : num;
+      item.innerHTML = `<span class="item-num">${numLabel}</span> <span>${title}</span>`;
+      item.onclick = () => { goToSlide(idx); toggleDrawer(); };
+      drawerBody.appendChild(item);
+    });
+
+    function pauseAllVideos() {
+      document.querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    function checkHash() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#slide-')) {
+        const num = parseInt(hash.replace('#slide-', ''), 10);
+        if (!isNaN(num) && num >= 0 && num < totalSlides) {
+          currentIndex = num;
+        }
+      }
+    }
+    checkHash();
+
+    function fitActiveSlide() {
+      if (window.innerWidth <= 900) return;
+      const activeSlide = slides[currentIndex];
+      if (!activeSlide) return;
+      const body = activeSlide.querySelector('.slide-body');
+      if (!body) return;
+      // Reset any prior custom scale
+      const textPanes = activeSlide.querySelectorAll('.pane-text, .grid-2, .grid-3');
+      textPanes.forEach(tp => {
+        tp.style.fontSize = '';
+        tp.querySelectorAll('.card p, .card li').forEach(el => {
+          el.style.fontSize = '';
+          el.style.lineHeight = '';
+        });
+        tp.querySelectorAll('.card').forEach(c => {
+          c.style.paddingTop = '';
+          c.style.paddingBottom = '';
+        });
+      });
+      // If content overflows body height on current viewport, tighten slightly so zero scroll is needed
+      let scale = 1.0;
+      while (body.scrollHeight > body.clientHeight + 2 && scale > 0.74) {
+        scale -= 0.03;
+        activeSlide.querySelectorAll('.card p, .card li').forEach(el => {
+          el.style.fontSize = `calc(clamp(0.71rem, 0.95vw, 0.89rem) * ${scale})`;
+          el.style.lineHeight = String(Math.max(1.16, 1.32 * scale));
+        });
+        activeSlide.querySelectorAll('.card').forEach(c => {
+          c.style.paddingTop = `${Math.max(3, Math.round(7 * scale))}px`;
+          c.style.paddingBottom = `${Math.max(3, Math.round(7 * scale))}px`;
+        });
+      }
+    }
+
+    function updateView(updateHash = true) {
+      pauseAllVideos();
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentIndex);
+      });
+      const pct = (currentIndex / (totalSlides - 1)) * 100;
+      progressBar.style.width = pct + '%';
+      slideIndicator.textContent = `${currentIndex + 1} / ${totalSlides}`;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === totalSlides - 1;
+      document.querySelectorAll('.drawer-item').forEach((it, idx) => {
+        it.classList.toggle('current', idx === currentIndex);
+      });
+      if (updateHash && window.location.hash !== `#slide-${currentIndex}`) {
+        history.replaceState(null, '', `#slide-${currentIndex}`);
+      }
+      requestAnimationFrame(fitActiveSlide);
+    }
+
+    window.addEventListener('resize', () => requestAnimationFrame(fitActiveSlide));
+    window.addEventListener('hashchange', () => {
+      checkHash();
+      updateView(false);
+    });
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentIndex = index;
+        updateView();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateView();
+      }
+    }
+
+    function toggleDrawer() {
+      modalOverlay.classList.toggle('active');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    function openCardModal(cardElement) {
+      const modal = document.getElementById('cardModalOverlay');
+      const container = document.getElementById('cardModalContainer');
+      const content = document.getElementById('cardModalContent');
+
+      container.className = 'card-modal-container';
+      const tones = ['tone-blue', 'tone-amber', 'tone-emerald', 'tone-purple', 'tone-rose', 'tone-teal', 'burgundy', 'blue'];
+      let matched = false;
+      for (const t of tones) {
+        if (cardElement.classList.contains(t)) {
+          container.classList.add(t);
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        container.classList.add('gold');
+      }
+
+      const parentSlide = cardElement.closest('.slide');
+      if (parentSlide && parentSlide.dataset.jointModal === 'true') {
+        const allCards = parentSlide.querySelectorAll('.card');
+        const combinedParts = [];
+        allCards.forEach(c => combinedParts.push(c.innerHTML));
+        content.innerHTML = combinedParts.join('<hr style="border:none; border-top:1px solid rgba(182,132,43,0.32); margin: 14px 0;">');
+      } else {
+        content.innerHTML = cardElement.innerHTML;
+      }
+      modal.classList.add('active');
+    }
+
+    function closeCardModal(e) {
+      if (e) {
+        if (e.target.closest('#cardModalContainer') && !e.target.closest('.card-modal-close')) {
+          return;
+        }
+      }
+      document.getElementById('cardModalOverlay').classList.remove('active');
+    }
+
+    function openImgModal(src, alt) {
+      const overlay = document.getElementById('imgModalOverlay');
+      const target = document.getElementById('imgModalTarget');
+      target.src = src;
+      target.alt = alt || 'Imagen ampliada';
+      overlay.classList.add('active');
+    }
+
+    function closeImgModal(e) {
+      if (e && e.target.id === 'imgModalTarget') return;
+      document.getElementById('imgModalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('presentationContainer').addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('video') || e.target.closest('a') ||
+          e.target.closest('.c-head') || e.target.closest('.c-lvl1')) {
+        return;
+      }
+      const zoomPane = e.target.closest('.zoomable-image');
+      if (zoomPane) {
+        const img = zoomPane.querySelector('img');
+        if (img) {
+          openImgModal(img.getAttribute('src'), img.getAttribute('alt'));
+        }
+        return;
+      }
+      if (e.target.closest('.pane-image') || e.target.closest('.cover-img-pane') ||
+          e.target.closest('.activity-img-box')) {
+        return;
+      }
+      const card = e.target.closest('.card, .activity-task, .comp-table-wrap');
+      if (card) {
+        openCardModal(card);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (modalOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') toggleDrawer();
+        return;
+      }
+      if (document.getElementById('imgModalOverlay').classList.contains('active')) {
+        if (e.key === 'Escape') closeImgModal();
+        return;
+      }
+      if (document.getElementById('cardModalOverlay').classList.contains('active')) {
+        if (e.key === 'Escape') closeCardModal();
+        return;
+      }
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        goToSlide(totalSlides - 1);
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key.toLowerCase() === 'm') {
+        toggleDrawer();
+      }
+    });
+
+    let startX = 0;
+    let startY = 0;
+    window.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+      startY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].screenX - startX;
+      const diffY = e.changedTouches[0].screenY - startY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    updateView();
+  </script>
+</body>
+</html>
